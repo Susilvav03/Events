@@ -3,35 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Opinno | Contact</title>
     <link rel="stylesheet" href="./contact.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
 </head>
-<body>
-    <header>
-        <h1>Welcome Admin</h1>
-    </header>
-    <main>
-        <aside class="menu">
+<body class="fixed-grid has-6-cols">
+    <div class="grid">
+        <header class="cell is-col-start-3 is-col-span-4">
+            <h1>Welcome Admin</h1>
+        </header>
+        <aside class="menu cell is-col-start-1 is-col-span-2">
             <ul class="menu-list">
-            <li><a href="../desktop/desktop.html">Desktop</a></li>
-            <li><a href="../subscriptions/subscriptions.html">Suscriptions</a></li>
-            <li><a href="../eventManagement/eventManagement.html">Events Management</a></li>
-            <li><a href="../contact/contact.html" class="is-active">Contact</a></li>
+                <li><a href="../desktop/desktop.html">Desktop</a></li>
+                <li><a href="../suscription/suscription.html">Suscriptions</a></li>
+                <li><a href="../eventManagement/eventManagement.html">Events Management</a></li>
+                <li><a href="../contact/contact.html" class="is-active">Contact</a></li>
             </ul>
         </aside>
-        <section>
-            <h2>Contact Information</h2>
-            <button class="button is-primary is-outlined">Search by email</button>
+        <main class="cell is-col-start-3 is-col-span-4">
+            <section class="fixed-grid has-4-cols">
+                <div class="grid">
+                    <h2 class="cell is-col-start-1 is-col-span-3">Contact Information</h2>
+                    <button class="button is-primary is-outlined cell is-col-start-4">Search by email</button>
+                    
+                    <section class="cell is-col-start-1 is-col-span-4">
 
-            <section>
-                <!-- Here it goes the innerHTML -->
+                        <!-- Here it goes the innerHTML -->
+                    </section>
+                </div>
             </section>
-
-        </section>
-    </main>
-    <footer>
-
-    </footer>
+        </main>
+        <footer>
+            
+        </footer>
+    </div>
 </body>
 </html>
