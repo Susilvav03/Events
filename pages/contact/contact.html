@@ -25,11 +25,26 @@
             <section class="fixed-grid has-4-cols">
                 <div class="grid">
                     <h2 class="cell is-col-start-1 is-col-span-3">Contact Information</h2>
-                    <button class="button is-primary is-outlined cell is-col-start-4 p-4">Search by email</button>
+                    <button id="search-email" class="button is-primary is-outlined cell is-col-start-4 p-4">Search by email</button>
 
-                    <section class="cell is-col-start-1 is-col-span-4">
+                    <section id="contact-messages" class="cell is-col-start-1 is-col-span-4">
                         <!-- Here it goes the innerHTML -->
+                        <article class="card p-5 mx-5">
+                            <header class="card-header">
+                                <p class="card-header-title">Name</p>
+                                <time datetime="2016-1-1" class="has-text-left-tablet has-text-left-mobile px-5">11:09 PM - 1 Jan 2016</time>
+                            </header>
+                            <div class="card-content">
+                                <div class="content">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="mailto:example@example.com" class="card-footer-item">Email</a>
+                            </footer>
+                        </article>
                     </section>
+                    
                 </div>
             </section>
         </main>
