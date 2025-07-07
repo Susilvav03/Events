@@ -1,37 +1,8 @@
 {
-    "users" : [
-        {
-            "id" : 1,
-            "name" : "Susana",
-            "email" : "susana@example.com"
-        }
-    ],
-    "contact-messages" : [
-        {
-            "name" : "Susana",
-            "date" : "2023-10-01",
-            "content" : "This is a sample content for the JSON file.",
-            "email" : "susana@example.com"
-        },
-        {
-            "name" : "John",
-            "date" : "2023-10-02",
-            "content" : "Another sample content for the JSON file.",
-            "email" : "john@example.com"
-        }
-    ],
+    "users" : [],
+    "contact-messages" : [],
 
-    "suscription" : [
-        {"id" : 1,
-        "name" : "Susana",
-        "email" : "susana@example.com"
-        },
-        {
-        "id" : 2,
-        "name" : "John",
-        "email" : "john@example.com"
-        }
-    ],
+    "suscription" : [],
 
     "events" : [
         {

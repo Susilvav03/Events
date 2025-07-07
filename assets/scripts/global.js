@@ -36,58 +36,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Contact Messages Page
+
 // Constants
-const contactMessages = document.getElementById('contact-messages');
+const APP_URL = "http://localhost:3000";
+const contactName = document.getElementById('contact-name');
+const contactEmail = document.getElementById('contact-email');
+const contactMessage = document.getElementById('contact-message');
+const sendMessageButton = document.getElementById('send-message');
+const Messages = document.getElementById('contact-messages');
 const searchEmailButton = document.getElementById('search-email');
 
 // Events
-searchEmailButton.addEventListener('click', () => {
-    const email = prompt('Enter the email to search for messages:');
-    if (email) {
-        searchByEmail(email);
+
+// Load contact messages on page load
+
+// Search by email button click event
+
+// Store contact message button click event
+sendMessageButton.addEventListener('click', async (event) => {
+    event.preventDefault(); // Prevent form submission
+
+    // Validate inputs
+    if (!contactName.value || !contactEmail.value || !contactMessage.value) {
+        console.error("All fields are required.");
+        return;
     }
+
+    // Save new contact message
+    await storeContactMessage(contactName.value, contactEmail.value, contactMessage.value);
 });
+
+// Functions 
 
 // Save new contact message
 
-
-// Search by email
-async function searchByEmail(email) {
-    const response = await fetch(`https://api.example.com/contact-messages?email=${email}`);
-    const messages = await response.json();
-    displayMessages(messages);
-}
-
-// Show contact messages
-async function showContactMessages() {
+async function storeContactMessage(name, email, content) {
     try {
-        const response = await fetch('https://api.example.com/contact-messages');
-        const messages = response.json();
+        const res = await fetch(APP_URL +"/contact-messages", {
+            "method": "POST",
+            "Content-Type": "application/json",
+            "body": JSON.stringify({
+                "name" : contactName.value,
+                "date" : new Date().toISOString().split('T')[0],
+                "content" : contactMessage.value,
+                "email" : contactEmail.value
+            })
+        });
 
-        const card = document.createElement('article');
-        card.className = 'card p-5 mx-5';
-
-        card.innerHTML = `
-            <header class="card-header">
-                <p class="card-header-title">${messages.name}</p>
-                <time datetime="${messages.date}" class="has-text-left-tablet has-text-left-mobile px-5">${messages.date}</time>
-            </header>
-            <div class="card-content">
-                <div class="content">
-                    ${messages.content}
-                </div>
-            </div>
-            <footer class="card-footer">
-                <a href="mailto:${messages.email}" class="card-footer-item">${messages.email}</a>
-            </footer>
-        `;
-
-        contactMessages.appendChild(card);
-        return contactMessages;
+        console.log(`Contact message stored: ${res.status} ${res.statusText}`);
+        
     } catch (error) {
-        console.error('Error fetching contact messages:', error);
-        contactMessages.innerHTML = '<div class="error">Failed to load messages.</div>';
+        console.error(`Error storing contact message: ${error}`);
     }
 }
+
 
 
