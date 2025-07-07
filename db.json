@@ -20,6 +20,26 @@
             "email" : "john@example.com"
         }
     ],
-    
 
+    "suscription" : [
+        {"id" : 1,
+        "name" : "Susana",
+        "email" : "susana@example.com"
+        },
+        {
+        "id" : 2,
+        "name" : "John",
+        "email" : "john@example.com"
+        }
+    ],
+
+    "events" : [
+        {
+            "id" : 1,
+            "name" : "Event One",
+            "date" : "2023-10-01",
+            "location" : "Location One",
+            "price" : 100
+        }
+    ]
 }
