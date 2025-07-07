@@ -7,7 +7,7 @@
     <title>Opinno</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css"/>
+    <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body class="dark-theme">
@@ -23,10 +23,9 @@
             </div>
             <div id="navbarMenu" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="./index.html">Home</a>
-                    <a class="navbar-item" href="#">About</a>
-                    <a class="navbar-item" href="#">Events</a>
-                    <a class="navbar-item" href="#">Contact</a>
+                    <a class="navbar-item" href="#home">About</a>
+                    <a class="navbar-item" href="#events">Events</a>
+                    <a class="navbar-item" href="#contact">Contact</a>
                 </div>
                 <div class="navbar-end">
                     <div class="navbar-item">
@@ -41,71 +40,99 @@
     </header>
 
     <main>
-        <section class="hero is-medium hero-carousel">
-            <div class="hero-body has-text-centered">
-                <p class="title is-size-1 has-text-white">Image carousel (min 3)</p>
+        <section class="section py-6">
+            <div class="container">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <img class="event_image" src="./assets/src/images/conference_two.jpg" alt="Event 1">
+                        <img class="event_image" src="./assets/src/images/conference_three.jpg" alt="Event 2">
+                        <img class="event_image" src="./assets/src/images/conference_four.jpg" alt="Event 3">
+                        <img class="event_image" src="./assets/src/images/conference_five.jpg" alt="Event 4">
+                        <img class="event_image" src="./assets/src/images/conference_six.jpg" alt="Event 5">
+                        <img class="event_image" src="./assets/src/images/conference_seven.jpg" alt="Event 6">
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="home">
             <div class="container">
                 <div class="columns is-vcentered">
                     <div class="column is-one-third">
-                        <div class="box image-placeholder"></div>
+                        <div class="box image-placeholder"><img src="./assets/src/images/conference_one.jpg"
+                                alt="Conference image"></div>
                     </div>
                     <div class="column">
                         <h2 class="title is-2 heading-text">Welcome to Opinno</h2>
-                        <p class="subtitle is-5 main-text">We build innovative, user-centered events and communities for
-                            the digital age. Join us to make an impact.</p>
+                        <p class="subtitle is-5 main-text">At Opinno, we believe in the power of ideas and
+                            collaboration. Join our community of innovators and changemakers in shaping the future
+                            through inspiring events, workshops, and conferences across the globe.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="events">
             <div class="container">
-                <h2 class="title is-3 has-text-white has-text-centered mb-6">Upcoming Events</h2>
-                <div class="columns is-multiline">
-                    <div class="column is-half">
-                        <div class="box event-card">
-                            <div class="image-placeholder-small"></div>
-                            <h3 class="title is-4 event-title">Event Title</h3>
-                            <p class="subtitle is-6 event-description">Description about this event and why it’s
-                                exciting.</p>
-                            <a href="#" class="button is-primary is-outlined">View Details</a>
+                <h2 class="title is-3 has-text-centered mb-6">Upcoming Events</h2>
+                <div class="columns is-multiline is-centered redesigned-events">
+                    <div class="column is-half-tablet is-one-quarter-desktop">
+                        <div class="event-card-redesigned">
+                            <img class="event_image" src="./assets/src/images/event_one.jpg" alt="Event one">
+                            <div class="event-overlay">
+                                <h3 class="title is-4">Tech Leaders Summit 2025</h3>
+                                <p>March 15, 2025 – Global tech visionaries discuss AI, sustainability, and innovation.
+                                </p>
+                            </div>
+                            <div class="event-action">
+                                <a href="#" class="button is-primary is-outlined">Purchase</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="column is-half">
-                        <div class="box event-card">
-                            <div class="image-placeholder-small"></div>
-                            <h3 class="title is-4 event-title">Event Title</h3>
-                            <p class="subtitle is-6 event-description">Another great event waiting for your
-                                participation.</p>
-                            <a href="#" class="button is-primary is-outlined">View Details</a>
+
+                    <div class="column is-half-tablet is-one-quarter-desktop">
+                        <div class="event-card-redesigned">
+                            <img class="event_image" src="./assets/src/images/event_two.jpg" alt="Event two">
+                            <div class="event-overlay">
+                                <h3 class="title is-4">Women in Innovation Forum</h3>
+                                <p>April 12, 2025 – Women leaders in science, tech, and entrepreneurship.</p>
+                            </div>
+                            <div class="event-action">
+                                <a href="#" class="button is-primary is-outlined">Purchase</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="column is-half">
-                        <div class="box event-card">
-                            <div class="image-placeholder-small"></div>
-                            <h3 class="title is-4 event-title">Event Title</h3>
-                            <p class="subtitle is-6 event-description">Expand your network and knowledge with us.</p>
-                            <a href="#" class="button is-primary is-outlined">View Details</a>
+
+                    <div class="column is-half-tablet is-one-quarter-desktop">
+                        <div class="event-card-redesigned">
+                            <img class="event_image" src="./assets/src/images/event_three.jpg" alt="Event three">
+                            <div class="event-overlay">
+                                <h3 class="title is-4">Green Future Congress</h3>
+                                <p>May 7, 2025 – Climate tech, clean energy, and ecological innovation.</p>
+                            </div>
+                            <div class="event-action">
+                                <a href="#" class="button is-primary is-outlined">Purchase</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="column is-half">
-                        <div class="box event-card">
-                            <div class="image-placeholder-small"></div>
-                            <h3 class="title is-4 event-title">Event Title</h3>
-                            <p class="subtitle is-6 event-description">Stay tuned for more learning and community
-                                sessions.</p>
-                            <a href="#" class="button is-primary is-outlined">View Details</a>
+
+                    <div class="column is-half-tablet is-one-quarter-desktop">
+                        <div class="event-card-redesigned">
+                            <img class="event_image" src="./assets/src/images/event_four.jpg" alt="Event four">
+                            <div class="event-overlay">
+                                <h3 class="title is-4">StartUp Connect</h3>
+                                <p>June 22, 2025 – Founders and investors shaping the next unicorns.</p>
+                            </div>
+                            <div class="event-action">
+                                <a href="#" class="button is-primary is-outlined">Purchase</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section contact-section">
+        <section class="section contact-section" id="contact">
             <div class="container">
                 <div class="columns">
                     <div class="column is-half">
@@ -114,7 +141,7 @@
                         </p>
                         <a href="#" class="button is-primary is-outlined mb-4">More Details</a>
                         <div class="box map-placeholder">
-                            <p class="has-text-centered">Map Placeholder</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.070119858349!2d-75.57143948839077!3d6.255006093755498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428e08d667615%3A0x67a36c572a1e0f0!2sRIWI%20Colombia!5e0!3m2!1sen!2sco!4v1700000000000!5m2!1sen!2sco" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                     <div class="column is-half">
@@ -127,17 +154,20 @@
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <input id="contact-email" class="input" type="email" placeholder="Your Email" required>
+                                    <input id="contact-email" class="input" type="email" placeholder="Your Email"
+                                        required>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <textarea id="contact-message" class="textarea" placeholder="Your Message" required></textarea>
+                                    <textarea id="contact-message" class="textarea" placeholder="Your Message"
+                                        required></textarea>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <button id="send-message" type="submit" class="button is-primary is-fullwidth">Send Message</button>
+                                    <button id="send-message" type="submit" class="button is-primary is-fullwidth">Send
+                                        Message</button>
                                 </div>
                             </div>
                         </form>
@@ -151,7 +181,7 @@
         <div class="container">
             <div class="columns is-vcentered">
                 <div class="column is-one-third">
-                    <p class="has-text-white mb-2">Subscribe to our newsletter</p>
+                    <p class="mb-2">Subscribe to our newsletter</p>
                     <div class="field has-addons">
                         <div class="control is-expanded">
                             <input class="input" type="email" placeholder="Your Email">
@@ -162,18 +192,19 @@
                     </div>
                 </div>
                 <div class="column is-one-third">
-                    <h4 class="title is-5 has-text-white">Information</h4>
-                    <p class="has-text-white is-size-7">We host and promote innovation-driven events, talks, and
+                    <h4 class="title is-5">Information</h4>
+                    <p class="is-size-7">We host and promote innovation-driven events, talks, and
                         opportunities. Stay connected!</p>
                 </div>
                 <div class="column is-one-third has-text-right">
-                    <h4 class="title is-5 has-text-white">© 2025 Opinno</h4>
+                    <h4 class="title is-5">© 2025 Opinno</h4>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="./assets/scripts/global.js"></script>
+    <script src="./assets/scripts/temporal.js"></script>
 </body>
 
 </html>
