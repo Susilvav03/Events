@@ -5,10 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opinno | Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../global.css"> 
-    <link rel="stylesheet" href="./register.css"> 
+    <link rel="stylesheet" href="./signUp.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet"/>
 </head>
 <body>
+    <header>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <span class="logo has-text-weight-bold is-size-4">Opin<span class="green_n">n</span>o</span></span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="../../index.html">Home</a>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <button id="theme-toggle" class="button">Theme</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div class="register-container">
         <h1 class="title has-text-centered mb-5">Create Account</h1>
         <form action="#" method="POST">
@@ -59,7 +83,7 @@
             </div>
 
             <div class="has-text-centered mt-4">
-                <p>Already have an account? <a href="./login.html">Log In</a></p>
+                <p>Already have an account? <a href="../signIn/signIn.html">Log In</a></p>
             </div>
         </form>
     </div>

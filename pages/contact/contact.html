@@ -11,13 +11,35 @@
 </head>
 <body class="fixed-grid has-6-cols">
     <div class="grid">
-        <header class="cell is-col-start-2 is-col-span-4 pt-5">
-            <h1>Welcome Admin</h1>
+        <header>
+            <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="#">
+                        <span class="logo has-text-weight-bold is-size-4">Opinno</span>
+                    </a>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-start">
+                        <p class="navbar-item">Welcome Admin</p>
+                    </div>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-primary is-outlined" href="./pages/signIn/signIn.html">Log Out</a>
+                                <button id="theme-toggle" class="button">Theme</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
         <aside class="menu cell is-col-start-1">
             <ul class="menu-list">
                 <li><a href="../desktop/desktop.html" class="p-4">Desktop</a></li>
-                <li><a href="../suscription/suscription.html" class="p-4">Suscriptions</a></li>
+                <li><a href="../suscription/suscription.html" class="p-4">Subscriptions</a></li>
                 <li><a href="../eventManagement/eventManagement.html" class="p-4">Events Management</a></li>
                 <li><a href="../contact/contact.html" class="is-active p-4">Contact</a></li>
             </ul>
