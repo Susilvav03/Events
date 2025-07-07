@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $target.classList.toggle('is-active');
             });
         });
-    }
+    }   
 
     // Theme toggle functionality
     const themeToggleBtn = document.getElementById('theme-toggle');

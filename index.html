@@ -2,176 +2,177 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Opinno</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../global.css">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css"/>
 </head>
 
 <body class="dark-theme">
-    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <span class="logo has-text-weight-bold is-size-4">Logo</span>
-            </a>
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-                data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="#">Inicio</a>
-                <a class="navbar-item" href="#">Acerca de</a>
-                <a class="navbar-item" href="#">Eventos</a>
-                <a class="navbar-item" href="#">Contacto</a>
+    <header>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <span class="logo has-text-weight-bold is-size-4">Opinno</span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </a>
             </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-primary is-outlined" href="#">Login</a>
-                        <button id="theme-toggle" class="button is-dark">
-                            Cambiar Tema
-                        </button>
-                    </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="./index.html">Home</a>
+                    <a class="navbar-item" href="#">About</a>
+                    <a class="navbar-item" href="#">Events</a>
+                    <a class="navbar-item" href="#">Contact</a>
                 </div>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero is-medium hero-carousel">
-        <div class="hero-body has-text-centered">
-            <p class="title is-size-1 has-text-white">Carrusel de imágenes mínimo 3</p>
-        </div>
-    </section>
-
-    <section class="section main-content">
-        <div class="container">
-            <div class="columns is-vcentered">
-                <div class="column is-one-third">
-                    <div class="box image-placeholder"></div>
-                </div>
-                <div class="column">
-                    <h2 class="title is-2 heading-text">Heading</h2>
-                    <p class="subtitle is-5 main-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div>
-
-            <hr class="divider">
-
-            <div class="columns is-multiline">
-                <div class="column is-half">
-                    <div class="box event-card">
-                        <div class="image-placeholder-small"></div>
-                        <h3 class="title is-4 event-title">Titulo del evento</h3>
-                        <p class="subtitle is-6 event-description">Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="#" class="button is-primary is-outlined event-detail-button">ver detalles</a>
-                    </div>
-                </div>
-                <div class="column is-half">
-                    <div class="box event-card">
-                        <div class="image-placeholder-small"></div>
-                        <h3 class="title is-4 event-title">Titulo del evento</h3>
-                        <p class="subtitle is-6 event-description">Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="#" class="button is-primary is-outlined event-detail-button">ver detalles</a>
-                    </div>
-                </div>
-                <div class="column is-half">
-                    <div class="box event-card">
-                        <div class="image-placeholder-small"></div>
-                        <h3 class="title is-4 event-title">Titulo del evento</h3>
-                        <p class="subtitle is-6 event-description">Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="#" class="button is-primary is-outlined event-detail-button">ver detalles</a>
-                    </div>
-                </div>
-                <div class="column is-half">
-                    <div class="box event-card">
-                        <div class="image-placeholder-small"></div>
-                        <h3 class="title is-4 event-title">Titulo del evento</h3>
-                        <p class="subtitle is-6 event-description">Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="#" class="button is-primary is-outlined event-detail-button">ver detalles</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section contact-section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-half">
-                    <h3 class="title is-3 has-text-white">Contacto</h3>
-                    <p class="subtitle is-6 has-text-white">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt
-                        ut labore et dolore magna aliqua.</p>
-                    <a href="#" class="button is-primary is-outlined contact-detail-button">ver detalles</a>
-                    <div class="box map-placeholder mt-5">
-                        <p class="has-text-centered">Mapa</p>
-                    </div>
-                </div>
-                <div class="column is-half">
-                    <h3 class="title is-3 has-text-white">Formulario de Contacto</h3>
-                    <div class="field">
-                        <div class="control">
-                            <input class="input" type="text" placeholder="nombres">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <input class="input" type="email" placeholder="correo">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <textarea class="textarea" placeholder="mensaje"></textarea>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-primary is-fullwidth">Enviar</button>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary is-outlined" href="#">Login</a>
+                            <button id="theme-toggle" class="button">Theme</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero is-medium hero-carousel">
+            <div class="hero-body has-text-centered">
+                <p class="title is-size-1 has-text-white">Image carousel (min 3)</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-one-third">
+                        <div class="box image-placeholder"></div>
+                    </div>
+                    <div class="column">
+                        <h2 class="title is-2 heading-text">Welcome to Opinno</h2>
+                        <p class="subtitle is-5 main-text">We build innovative, user-centered events and communities for
+                            the digital age. Join us to make an impact.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-3 has-text-white has-text-centered mb-6">Upcoming Events</h2>
+                <div class="columns is-multiline">
+                    <div class="column is-half">
+                        <div class="box event-card">
+                            <div class="image-placeholder-small"></div>
+                            <h3 class="title is-4 event-title">Event Title</h3>
+                            <p class="subtitle is-6 event-description">Description about this event and why it’s
+                                exciting.</p>
+                            <a href="#" class="button is-primary is-outlined">View Details</a>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <div class="box event-card">
+                            <div class="image-placeholder-small"></div>
+                            <h3 class="title is-4 event-title">Event Title</h3>
+                            <p class="subtitle is-6 event-description">Another great event waiting for your
+                                participation.</p>
+                            <a href="#" class="button is-primary is-outlined">View Details</a>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <div class="box event-card">
+                            <div class="image-placeholder-small"></div>
+                            <h3 class="title is-4 event-title">Event Title</h3>
+                            <p class="subtitle is-6 event-description">Expand your network and knowledge with us.</p>
+                            <a href="#" class="button is-primary is-outlined">View Details</a>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <div class="box event-card">
+                            <div class="image-placeholder-small"></div>
+                            <h3 class="title is-4 event-title">Event Title</h3>
+                            <p class="subtitle is-6 event-description">Stay tuned for more learning and community
+                                sessions.</p>
+                            <a href="#" class="button is-primary is-outlined">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section contact-section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-half">
+                        <h3 class="title is-3 has-text-white">Contact Us</h3>
+                        <p class="subtitle is-6 has-text-white">Feel free to reach out for partnerships or inquiries.
+                        </p>
+                        <a href="#" class="button is-primary is-outlined mb-4">More Details</a>
+                        <div class="box map-placeholder">
+                            <p class="has-text-centered">Map Placeholder</p>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <h3 class="title is-3 has-text-white">Get in Touch</h3>
+                        <form>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Your Name" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="email" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <textarea class="textarea" placeholder="Your Message" required></textarea>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit" class="button is-primary is-fullwidth">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
             <div class="columns is-vcentered">
                 <div class="column is-one-third">
-                    <p class="has-text-white mb-2">suscribirme a nuevos eventos</p>
+                    <p class="has-text-white mb-2">Subscribe to our newsletter</p>
                     <div class="field has-addons">
                         <div class="control is-expanded">
-                            <input class="input" type="email" placeholder="correo electronico">
+                            <input class="input" type="email" placeholder="Your Email">
                         </div>
                         <div class="control">
-                            <button class="button is-primary">Suscribir</button>
+                            <button class="button is-primary">Subscribe</button>
                         </div>
                     </div>
                 </div>
                 <div class="column is-one-third">
-                    <h4 class="title is-5 has-text-white">info</h4>
-                    <p class="has-text-white is-size-7">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h4 class="title is-5 has-text-white">Information</h4>
+                    <p class="has-text-white is-size-7">We host and promote innovation-driven events, talks, and
+                        opportunities. Stay connected!</p>
                 </div>
                 <div class="column is-one-third has-text-right">
-                    <h4 class="title is-5 has-text-white">Footer</h4>
+                    <h4 class="title is-5 has-text-white">© 2025 Opinno</h4>
                 </div>
             </div>
         </div>
     </footer>
+
     <script src="./assets/scripts/index.js"></script>
 </body>
 

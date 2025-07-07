@@ -245,7 +245,7 @@ body.light-theme .hero-carousel {
     color: var(--palette-green-vibrant) !important;
 }
 
-/* Adjust button colors for theme toggle */
+/* Adjust button colors for theme toggle (default for dark theme or when no specific body theme is set) */
 #theme-toggle {
     border: 1px solid var(--palette-green-vibrant);
     background-color: transparent;
@@ -259,6 +259,7 @@ body.light-theme .hero-carousel {
     /* Invert text color on hover */
 }
 
+/* This block handles the light theme styling for the toggle button */
 body.light-theme #theme-toggle {
     border: 1px solid var(--palette-green-darker);
     color: var(--palette-green-darker);
