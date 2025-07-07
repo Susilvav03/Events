@@ -3,12 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opinno | Sign In</title>
+    <title>Opinno | Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../global.css">
-    <link rel="stylesheet" href="./signIn.css">
+    <link rel="stylesheet" href="../../global.css"> 
+    <link rel="stylesheet" href="./login.css"> 
 </head>
 <body>
-    
+    <div class="login-container">
+        <h1 class="title has-text-centered mb-5">Login</h1>
+        <form action="#" method="POST">
+            <div class="field">
+                <label class="label" for="username">Username</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="text" id="username" placeholder="Your username" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="password">Password</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="password" id="password" placeholder="Your password" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-primary is-fullwidth">Log In</button>
+                </div>
+            </div>
+
+            <div class="field mt-3">
+                <div class="control">
+                    <button type="button" class="button is-link is-light is-fullwidth">Register</button>
+                    </div>
+            </div>
+        </form>
+    </div>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 </body>
 </html>
