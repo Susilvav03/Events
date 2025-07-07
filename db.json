@@ -1,16 +1,22 @@
 {
-    "users" : [],
-    "contact-messages" : [],
-
-    "suscription" : [],
-
-    "events" : [
-        {
-            "id" : 1,
-            "name" : "Event One",
-            "date" : "2023-10-01",
-            "location" : "Location One",
-            "price" : 100
-        }
-    ]
+  "users": [],
+  "contact-messages": [
+    {
+      "name": "Susana",
+      "date": "2025-07-07",
+      "content": "ghnnghnm",
+      "email": "susan@gmail.com",
+      "id": 1
+    }
+  ],
+  "suscription": [],
+  "events": [
+    {
+      "id": 1,
+      "name": "Event One",
+      "date": "2023-10-01",
+      "location": "Location One",
+      "price": 100
+    }
+  ]
 }
