@@ -36,10 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Contact Messages Page
 
 // Constants
 const APP_URL = "http://localhost:3000";
+
+// Contact elements
+// ----------------
 const contactName = document.getElementById('contact-name');
 const contactEmail = document.getElementById('contact-email');
 const contactMessage = document.getElementById('contact-message');
@@ -47,11 +49,24 @@ const sendMessageButton = document.getElementById('send-message');
 const Messages = document.getElementById('contact-messages');
 const searchEmailButton = document.getElementById('search-email');
 
-
+// Subscribed emails elements
+// --------------------------
 const subscribedButton = document.getElementById('subscriptButton')
 const subscribedEmailInput = document.getElementById('subscribedEmail')
 
+// Desktop elements
+// ----------------
+const activeEvents = document.getElementById('active-events');
+const inactiveEvents = document.getElementById('inactive-events');
+const cancelledEvents = document.getElementById('cancelled-events');
+const totalEvents = document.getElementById('total-events');
+const registeredEmails = document.getElementById('registered-emails');
+const contactMessagesCount = document.getElementById('contact-messages-count');
+
 // Events
+
+// Contact Messages
+// -----------------
 
 // Load contact messages on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -70,15 +85,30 @@ sendMessageButton.addEventListener('click', async (event) => {
     await storeContactMessage(contactName.value, contactEmail.value, contactMessage.value);
 });
 
+// Subscribed emails
+// -----------------    
+
+// Save subscribed email button click event
 subscribedButton.addEventListener('click', async (event) => {
     event.preventDefault();
-    await saveSubscribedEmails(subscribedEmailInput.value)
+    await saveSubscribedEmails(subscribedEmailInput.value);
 })
+
+// Desktop
+// --------
+
+// Show contact messages count on page load
+document.addEventListener('DOMContentLoaded', () => {
+    showContactMessagesCount();
+});
+
 
 // Functions 
 
-// Save new contact message
+// Contact Messages
+// -----------------
 
+// Save new contact message
 async function storeContactMessage(name, email, content) {
     // Validate inputs
     if (!name || !email || !content) {
@@ -181,11 +211,14 @@ async function searchContactByEmail() {
     }
 }
 
-//Save registered emails
+// Subscribed Emails
+// -----------------
+
+// Save subscribed emails
 async function saveSubscribedEmails(email) {
     if (!email) {
         console.error("Email is required");
-        return        
+        return;
     }
 
     try {
@@ -205,24 +238,16 @@ async function saveSubscribedEmails(email) {
 }
 
 
-
-
 // Desktop page
-
-const countElement = document.getElementById('contact-messages-count');
-
-//events
-document.addEventListener('DOMContentLoaded', () => {
-    showContactMessagesCount();
-});
-
+// ---------------
 
 // show number of contact messages
 async function showContactMessagesCount() {
     try {
         const res = await fetch(APP_URL + "/contact-messages");
         const messages = await res.json();
-        countElement.textContent = `${messages.length} Contact messages`;
+        contactMessagesCount.innerHTML = "";
+        contactMessagesCount.innerHTML = messages.length();
     } catch (error) {
         console.error(`Error fetching contact messages count: ${error}`);
     }
