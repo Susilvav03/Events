@@ -17,7 +17,7 @@ body > header {
     z-index: 1000; 
 }
 
-.login-container {
+.register-container {
     max-width: 400px;
     width: 100%;
     margin-top: 80px;
@@ -28,10 +28,10 @@ body > header {
 }
 
 @media screen and (max-width: 768px) {
-    .login-container {
+    .register-container {
         padding: 10px;
     }
-    .login-container .box {
+    .register-container .box {
         padding: 1.5rem; 
     }
 }
