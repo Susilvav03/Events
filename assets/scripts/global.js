@@ -67,8 +67,7 @@ const searchEmailButton = document.getElementById('search-email');
 
 // Subscribed emails elements
 // --------------------------
-const subscribedButton = document.getElementById('subscriptButton')
-const subscribedEmailInput = document.getElementById('subscribedEmail')
+const showEmails = document.getElementById("emails-subscribed")
 
 // Desktop elements
 // ----------------
@@ -110,12 +109,17 @@ subscribedButton.addEventListener('click', async (event) => {
     await saveSubscribedEmails(subscribedEmailInput.value);
 })
 
+
 // Desktop
 // --------
 
 // Show contact messages count on page load
 document.addEventListener('DOMContentLoaded', () => {
     showContactMessagesCount();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    showEmailsSubscribed();
 });
 
 
@@ -257,18 +261,18 @@ async function saveSubscribedEmails(email) {
 async function showEmailsSubscribed() {
     const res = await fetch(APP_URL + "/suscription");
     const emails = await res.json();
-    Messages.innerHTML = '';
+    showEmails.innerHTML = '';
 
     emails.forEach(email => {
         const emailElement = document.createElement('tr');
-        emailElement.className = 'emails-subscribed';
+        emailElement.className = 'emails';
         emailElement.innerHTML = `
                 <td>${email.id}</td>
                 <td><a href="mailto:${email.email}">${email.email}</a></td>
-                <td>Active</td>
+                <td>${email.date}</td>
                 <td></td>
         `;
-        Messages.appendChild(emailElement)
+        showEmails.appendChild(emailElement)
     })
 
 }
