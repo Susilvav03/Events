@@ -36,9 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Contact Messages Page
+// Constants
+const APP_URL = "http://localhost:3000";
 
-
+// Subscribed emails elements
+// --------------------------
 const subscribedButton = document.getElementById('subscriptButton')
 const subscribedEmailInput = document.getElementById('subscribedEmail')
 if (subscribedButton && subscribedEmailInput) {
@@ -53,8 +55,6 @@ if (subscribedButton && subscribedEmailInput) {
     })
 }
 
-// Constants
-const APP_URL = "http://localhost:3000";
 
 // Contact elements
 // ----------------
@@ -64,11 +64,6 @@ const contactMessage = document.getElementById('contact-message');
 const sendMessageButton = document.getElementById('send-message');
 const Messages = document.getElementById('contact-messages');
 const searchEmailButton = document.getElementById('search-email');
-
-// Subscribed emails elements
-// --------------------------
-const subscribedButton = document.getElementById('subscriptButton')
-const subscribedEmailInput = document.getElementById('subscribedEmail')
 
 // Desktop elements
 // ----------------
@@ -86,35 +81,42 @@ const contactMessagesCount = document.getElementById('contact-messages-count');
 
 // Load contact messages on page load
 document.addEventListener('DOMContentLoaded', () => {
-    showContactMessages();
+    //showContactMessages();
 });
 
 // Search by email button click event
-searchEmailButton.addEventListener('click', async (event) => {
+if(searchEmailButton) {
+    searchEmailButton.addEventListener('click', async (event) => {
     event.preventDefault();
     await searchContactByEmail();
 });
+}
 
 // Store contact message button click event
+if (sendMessageButton) {
 sendMessageButton.addEventListener('click', async (event) => {
     event.preventDefault();
     await storeContactMessage(contactName.value, contactEmail.value, contactMessage.value);
 });
+}
 
 // Subscribed emails
 // -----------------    
 
 // Save subscribed email button click event
+if (subscribedButton) {
 subscribedButton.addEventListener('click', async (event) => {
     event.preventDefault();
     await saveSubscribedEmails(subscribedEmailInput.value);
 })
-
+}
 // Desktop
 // --------
 
 // Show contact messages count on page load
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("fgfgg");
+    
     showContactMessagesCount();
 });
 
@@ -262,8 +264,11 @@ async function showContactMessagesCount() {
     try {
         const res = await fetch(APP_URL + "/contact-messages");
         const messages = await res.json();
+
+        console.log(`Total contact messages: ${messages.length}`);
+        
         contactMessagesCount.innerHTML = "";
-        contactMessagesCount.innerHTML = messages.length();
+        contactMessagesCount.innerHTML = messages.length;
     } catch (error) {
         console.error(`Error fetching contact messages count: ${error}`);
     }
