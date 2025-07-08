@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Navbar Burger Toggle ---
     const navbarBurger = document.getElementById('navbarBurger');
     const navbarMenu = document.getElementById('navbarMenu');
 
@@ -10,11 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Theme Toggle ---
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
-    // Check for saved theme preference or default to light
     const currentTheme = localStorage.getItem('theme') || 'light';
     body.classList.add(currentTheme);
     if (currentTheme === 'dark') {
@@ -36,12 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeToggle.textContent = 'Dark Theme';
                 localStorage.setItem('theme', 'light');
             }
-            // IMPORTANT: You need to define CSS rules for .light and .dark classes
-            // in your signIn.css (or a shared global.css) for the visual theme change to work.
         });
     }
 
-    // --- Form Validation for Login Page ---
     const loginForm = document.getElementById('loginForm');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
@@ -49,42 +43,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const usernameError = document.getElementById('usernameError');
     const passwordError = document.getElementById('passwordError');
 
-    // Function to show an error message
     const showError = (element, message) => {
         element.textContent = message;
-        element.style.display = 'block'; // Make the error message visible
-        const inputControl = element.previousElementSibling; // This is the .control div
+        element.style.display = 'block'; 
+        const inputControl = element.previousElementSibling; 
         if (inputControl && inputControl.querySelector('input')) {
             inputControl.querySelector('input').classList.add('is-danger');
         }
     };
 
-    // Function to hide an error message
     const hideError = (element) => {
         element.textContent = '';
-        element.style.display = 'none'; // Hide the error message
-        const inputControl = element.previousElementSibling; // This is the .control div
+        element.style.display = 'none'; 
+        const inputControl = element.previousElementSibling; 
         if (inputControl && inputControl.querySelector('input')) {
             inputControl.querySelector('input').classList.remove('is-danger');
         }
     };
 
     loginForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); 
 
         let isValid = true;
 
-        // Reset all errors first
         hideError(usernameError);
         hideError(passwordError);
 
-        // Validate Username
         if (usernameInput.value.trim() === '') {
             showError(usernameError, 'Username is required.');
             isValid = false;
         }
 
-        // Validate Password
         if (passwordInput.value.trim() === '') {
             showError(passwordError, 'Password is required.');
             isValid = false;
@@ -92,36 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isValid) {
             alert('Login successful! (Form not actually submitted)');
-            // In a real application, you would typically send this data to a server:
-            // fetch('/api/login', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //         username: usernameInput.value,
-            //         password: passwordInput.value
-            //     })
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     if (data.success) {
-            //         alert('Login successful!');
-            //         // Redirect to a dashboard or main application page
-            //         window.location.href = '../desktop/desktop.html'; // Example redirect
-            //     } else {
-            //         // Show error message from server (e.g., invalid credentials)
-            //         showError(passwordError, data.message || 'Invalid username or password.');
-            //     }
-            // })
-            // .catch(error => {
-            //     console.error('Error during login:', error);
-            //     showError(passwordError, 'An error occurred. Please try again.');
-            // });
         }
     });
 
-    // Real-time validation feedback on blur
     usernameInput.addEventListener('blur', () => {
         if (usernameInput.value.trim() === '') {
             showError(usernameError, 'Username is required.');

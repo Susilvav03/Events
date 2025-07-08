@@ -5,39 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opinno | Events Management</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../global.css">
-    <link rel="stylesheet" href="./eventManagement.css">
+    <link rel="stylesheet" href="../../styles.css"> <link rel="stylesheet" href="./eventManagement.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet" />
 </head>
-<body class="fixed-grid has-6-cols">
-    <div class="grid">
-        <header class="cell is-col-start-2 is-col-span-4 pt-5">
-            <h1>Welcome Admin</h1>
-        </header>
-        <aside class="menu cell is-col-start-1">
-            <ul class="menu-list">
+<body class="dark-theme">
+    <header>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <span class="logo has-text-weight-bold is-size-4">Opin<span class="green_n">n</span>o</span></span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary is-outlined" href="../../pages/signIn/signIn.html">Log Out</a>
+                            <button id="theme-toggle" class="button">Theme</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="columns is-gapless is-desktop event-management-layout"> <aside class="column is-one-fifth menu section py-6"> <ul class="menu-list">
                 <li><a href="../desktop/desktop.html" class="p-4">Desktop</a></li>
                 <li><a href="../suscription/suscription.html" class="p-4">Suscriptions</a></li>
-                <li><a href="../eventManagement/eventManagement.html" class="is-active p-4">Events Management</a></li>
+                <li><a href="./eventManagement.html" class="is-active p-4">Events Management</a></li>
                 <li><a href="../contact/contact.html" class="p-4">Contact</a></li>
             </ul>
         </aside>
-        <main class="cell is-col-start-2 is-col-span-5 p-6">
-            <section class="fixed-grid has-4-cols">
-                <div class="grid">
-                    <h2 class="cell is-col-start-1 is-col-span-3">Events</h2>
-                    <button class="button is-primary is-outlined cell is-col-start-4 p-4">Search by name</button>
-                    
-                    <section class="cell is-col-start-1 is-col-span-4">
 
-                        <!-- Here it goes the innerHTML -->
-                    </section>
-                </div>
-            </section>
+        <main class="column section is-four-fifths main-content"> <div class="container">
+                <h1 class="title is-2 mb-5">Events Management</h1>
+
+                <section class="section py-4">
+                    <div class="columns is-vcentered mb-4">
+                        <div class="column is-half">
+                            <h2 class="title is-4 mb-0">Events List</h2>
+                        </div>
+                        <div class="column is-half has-text-right">
+                            <button class="button is-primary">Search by name</button>
+                        </div>
+                    </div>
+                    
+                    <div class="box"> <p>This is where the list of events will be displayed.</p>
+                        <table class="table is-fullwidth is-striped is-hoverable">
+                            <thead>
+                                <tr>
+                                    <th>Event Name</th>
+                                    <th>Date</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tech Summit 2024</td>
+                                    <td>2024-07-20</td>
+                                    <td>Virtual</td>
+                                    <td>Active</td>
+                                    <td>
+                                        <button class="button is-small is-info mr-1">Edit</button>
+                                        <button class="button is-small is-danger">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Innovation Expo</td>
+                                    <td>2024-08-05</td>
+                                    <td>Convention Center</td>
+                                    <td>Active</td>
+                                    <td>
+                                        <button class="button is-small is-info mr-1">Edit</button>
+                                        <button class="button is-small is-danger">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Web Dev Workshop</td>
+                                    <td>2024-09-10</td>
+                                    <td>Online</td>
+                                    <td>Inactive</td>
+                                    <td>
+                                        <button class="button is-small is-info mr-1">Edit</button>
+                                        <button class="button is-small is-danger">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
         </main>
-        <footer>
-            
-        </footer>
     </div>
+
     <script src="../../assets/scripts/global.js"></script>
 </body>
 </html>
