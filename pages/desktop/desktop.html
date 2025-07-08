@@ -5,39 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opinno | Desktop</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../../styles.css"> 
     <link rel="stylesheet" href="./desktop.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet" />
 </head>
-<body class="fixed-grid has-6-cols">
-    <div class="grid">
-        <header class="cell is-col-start-2 is-col-span-4 pt-5">
-            <h1>Welcome Admin</h1>
-        </header>
-        <aside class="menu cell is-col-start-1">
-            <ul class="menu-list">
-                <li><a href="../desktop/desktop.html" class="is-active p-4">Desktop</a></li>
-                <li><a href="../suscription/suscription.html" class="p-4">Suscriptions</a></li>
-                <li><a href="../eventManagement/eventManagement.html" class="p-4">Events Management</a></li>
-                <li><a href="../contact/contact.html" class="p-4">Contact</a></li>
+<body class="dark-theme">
+    <header>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <span class="logo has-text-weight-bold is-size-4">Opin<span class="green_n">n</span>o</span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary is-outlined" href="../../index.html">Log Out</a>
+                            <button id="theme-toggle" class="button">Theme</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="columns is-gapless is-desktop desktop-layout"> <aside class="column is-one-fifth menu section py-6"> <ul class="menu-list">
+                <li class="aside_buttons"><a href="./desktop.html" class="is-active p-4">Desktop</a></li>
+                <li class="aside_buttons"><a href="../suscription/suscription.html" class="p-4">Subscriptions</a></li>
+                <li class="aside_buttons"><a href="../eventManagement/eventManagement.html" class="p-4">Events Management</a></li>
+                <li class="aside_buttons"><a href="../contact/contact.html" class="p-4">Contact</a></li>
             </ul>
         </aside>
-        <main class="cell is-col-start-2 is-col-span-5">
-            <section class="fixed-grid has-4-cols">
-                <div class="grid">
-                    <button class="button cell is-col-start-1 p-4 my-6"><p class="m-4" id="active-events">Active Events</p></button>
-                    <button class="button cell is-col-start-2 p-4 my-6"><p class="m-4" id="cancel-events">Cancelled Events</p></button>
-                    <button class="button cell is-col-start-3 p-4 my-6"><p class="m-4" id="inactive-events">Inactive Events</p></button>
-                    <button class="button cell is-col-start-4 p-4 my-6"><p class="m-4" id="total-events">Total Events</p></button>
-
-                    <button class="button cell is-col-start-1 is-col-span-2 p-4"><p class="m-4" id="registered-emails">Registered Emails</p></button>
-                    <button class="button cell is-col-start-3 is-col-span-2 p-4"><p class="m-4" id="contact-messages-count">Contact Messages</p></button>
-                </div>
-            </section>
+        <main class="column section is-four-fifths main-content"> <div class="container">
+                <h1 class="title is-2 mb-5">Welcome Admin</h1>
+                <section class="section py-4">
+                    <h2 class="title is-4 mb-4">Event Statistics</h2>
+                    <div class="columns is-multiline">
+                        <div class="column is-half-tablet is-one-quarter-desktop">
+                            <div class="box has-text-centered">
+                                <p class="title is-3" id="active-events">12</p>
+                                <p class="subtitle is-6">Active Events</p>
+                            </div>
+                        </div>
+                        <div class="column is-half-tablet is-one-quarter-desktop">
+                            <div class="box has-text-centered">
+                                <p class="title is-3" id="cancel-events">3</p>
+                                <p class="subtitle is-6">Cancelled Events</p>
+                            </div>
+                        </div>
+                        <div class="column is-half-tablet is-one-quarter-desktop">
+                            <div class="box has-text-centered">
+                                <p class="title is-3" id="inactive-events">5</p>
+                                <p class="subtitle is-6">Inactive Events</p>
+                            </div>
+                        </div>
+                        <div class="column is-half-tablet is-one-quarter-desktop">
+                            <div class="box has-text-centered">
+                                <p class="title is-3" id="total-events">20</p>
+                                <p class="subtitle is-6">Total Events</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section py-4">
+                    <h2 class="title is-4 mb-4">Contact & Subscribers</h2>
+                    <div class="columns is-multiline">
+                        <div class="column is-half-tablet">
+                            <div class="box has-text-centered">
+                                <p class="title is-3" id="registered-emails">150</p>
+                                <p class="subtitle is-6">Registered Emails</p>
+                            </div>
+                        </div>
+                        <div class="column is-half-tablet">
+                            <div class="box has-text-centered">
+                                <p class="title is-3" id="contact-messages-count">8</p>
+                                <p class="subtitle is-6">New Contact Messages</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </main>
-        <footer>
-            
-        </footer>
     </div>
     <script src="../../assets/scripts/global.js"></script>
 </body>
