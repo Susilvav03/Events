@@ -121,6 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
     showContactMessagesCount();
 });
 
+// Show registered emails count on page load
+document.addEventListener('DOMContentLoaded', () => {
+    showRegisteredEmailsCount();
+});
+
+// Show events count on page load
+document.addEventListener('DOMContentLoaded', () => {
+    showEventsCount();
+});
 
 // Functions 
 
@@ -276,9 +285,38 @@ async function showContactMessagesCount() {
 }
 
 // Show registered emails
+async function showRegisteredEmailsCount() {
+    try {
+        const res = await fetch(APP_URL + "/suscription");
+        const emails = await res.json();
+
+
+        registeredEmails.innerHTML = "";
+        registeredEmails.innerHTML = emails.length;
+    } catch (error) {
+        console.error(`Error fetching registered emails count: ${error}`);
+    }
+}
+
 // Show active events
 // Show inactive events
 // show cancelled events
 // Show total events
+async function showEventsCount() {
+    try {
+        const res = await fetch(APP_URL + "/events");
+        const events = await res.json();
 
+        // Filter events by status
+        const active = events.filter(event => event.status === 'active');
+        const inactive = events.filter(event => event.status === 'inactive');
+        const cancelled = events.filter(event => event.status === 'cancelled');
 
+       activeEvents.innerHTML = active.length;
+       inactiveEvents.innerHTML = inactive.length;
+       cancelledEvents.innerHTML = cancelled.length;
+       totalEvents.innerHTML = events.length;
+    } catch (error) {
+        console.error(`Error fetching events count: ${error}`);
+    }
+}
