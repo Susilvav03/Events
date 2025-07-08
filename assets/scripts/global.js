@@ -125,6 +125,7 @@ async function showContactMessages() {
             `;
             Messages.appendChild(messageElement);
         });
+
     } catch (error) {
         console.error(`Error fetching contact messages: ${error}`);
     }
@@ -132,7 +133,7 @@ async function showContactMessages() {
 
 // Search contact messages by email
 async function searchContactByEmail() {
-    const email = prompt("Enter the email to search:").trim().toLocaleLowerCase();
+    const email = prompt("Enter the email to search:").trim().toLowerCase();
 
     if (!email) {
         console.error("Please enter an email to search.");
@@ -174,15 +175,21 @@ async function searchContactByEmail() {
 
 // Desktop page
 
+const countElement = document.getElementById('contact-messages-count');
+
+//events
+document.addEventListener('DOMContentLoaded', () => {
+    showContactMessagesCount();
+});
+
+
 // show number of contact messages
 async function showContactMessagesCount() {
     try {
         const res = await fetch(APP_URL + "/contact-messages");
         const messages = await res.json();
-        const countElement = document.getElementById('contact-messages-count');
         countElement.textContent = `${messages.length} Contact messages`;
-    }
-    catch (error) {
+    } catch (error) {
         console.error(`Error fetching contact messages count: ${error}`);
     }
 }
