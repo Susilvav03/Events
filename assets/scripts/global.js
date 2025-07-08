@@ -326,11 +326,20 @@ async function showContactMessagesCount() {
     // show cancelled events
     // Show total events
 
-       activeEvents.innerHTML = active.length;
-       inactiveEvents.innerHTML = inactive.length;
-       cancelledEvents.innerHTML = cancelled.length;
-       totalEvents.innerHTML = events.length;
-    } catch (error) {
-        console.error(`Error fetching events count: ${error}`);
+    async function showEventsCount() {
+        try {
+            const res = await fetch(APP_URL + "/events")
+            const events = await res.json()
+            const active = events.filter(event => event.status === "active")
+            const inactive = events.filter(event => event.status === "inactive")
+            const cancelled = events.filter(event => event.status === "cancelled")
+            activeEvents.innerHTML = active.length;
+            inactiveEvents.innerHTML = inactive.length;
+            cancelledEvents.innerHTML = cancelled.length;
+            totalEvents.innerHTML = events.length;
+        }
+        catch {
+            console.error(`Error fetching events count: ${error}`);
+        }
     }
-}
+
