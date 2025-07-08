@@ -38,6 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Contact Messages Page
 
+
+const subscribedButton = document.getElementById('subscriptButton')
+const subscribedEmailInput = document.getElementById('subscribedEmail')
+if (subscribedButton && subscribedEmailInput) {
+    subscribedButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const email = subscribedEmailInput.value.trim();
+        if (!email) {
+            alert("Please enter a valid email");
+            return;
+        }
+        await saveSubscribedEmails(email);
+    })
+}
+
 // Constants
 const APP_URL = "http://localhost:3000";
 const contactName = document.getElementById('contact-name');
@@ -48,8 +63,7 @@ const Messages = document.getElementById('contact-messages');
 const searchEmailButton = document.getElementById('search-email');
 
 
-const subscribedButton = document.getElementById('subscriptButton')
-const subscribedEmailInput = document.getElementById('subscribedEmail')
+
 
 // Events
 
@@ -70,10 +84,7 @@ sendMessageButton.addEventListener('click', async (event) => {
     await storeContactMessage(contactName.value, contactEmail.value, contactMessage.value);
 });
 
-subscribedButton.addEventListener('click', async (event) => {
-    event.preventDefault();
-    await saveSubscribedEmails(subscribedEmailInput.value)
-})
+
 
 // Functions 
 
