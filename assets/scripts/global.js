@@ -281,7 +281,7 @@ async function showEmailsSubscribed() {
                 <td>${email.id}</td>
                 <td><a href="mailto:${email.email}">${email.email}</a></td>
                 <td>${email.date}</td>
-                <td></td>
+                <td>Active</td>
         `;
         showEmails.appendChild(emailElement)
     })
