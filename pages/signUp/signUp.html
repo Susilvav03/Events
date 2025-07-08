@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opinno | Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./signUp.css"> 
+    <link rel="stylesheet" href="./signUp.css">
+    <link rel="stylesheet" href="../../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet"/>
 </head>
 <body>
@@ -37,7 +38,7 @@
         <h1 class="title has-text-centered mb-5">Create Account</h1>
         <form action="#" method="POST">
             <div class="field">
-                <label class="label" for="name">Full Name</label>
+                <label for="name">Full Name</label>
                 <div class="control has-icons-left">
                     <input class="input" type="text" id="name" placeholder="Your full name" required>
                     <span class="icon is-small is-left">
@@ -47,9 +48,9 @@
             </div>
 
             <div class="field">
-                <label class="label" for="email">Email Address</label>
+                <label for="email">Email Address</label>
                 <div class="control has-icons-left">
-                    <input class="input" type="email" id="email" placeholder="example@domain.com" required>
+                    <input class="input" type="email" id="email" placeholder="raul@riwi.io" required>
                     <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                     </span>
@@ -57,7 +58,7 @@
             </div>
 
             <div class="field">
-                <label class="label" for="password">Password</label>
+                <label for="password">Password</label>
                 <div class="control has-icons-left">
                     <input class="input" type="password" id="password" placeholder="Create your password" required>
                     <span class="icon is-small is-left">
@@ -67,7 +68,7 @@
             </div>
 
             <div class="field">
-                <label class="label" for="confirm_password">Confirm Password</label>
+                <label for="confirm_password">Confirm Password</label>
                 <div class="control has-icons-left">
                     <input class="input" type="password" id="confirm_password" placeholder="Confirm your password" required>
                     <span class="icon is-small is-left">
@@ -83,11 +84,12 @@
             </div>
 
             <div class="has-text-centered mt-4">
-                <p>Already have an account? <a href="../signIn/signIn.html">Log In</a></p>
+                <p>Already have an account? <a class="login-button" href="../signIn/signIn.html">Log In</a></p>
             </div>
         </form>
     </div>
 
-    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <script src="./signUp.js"></script>
+    <script src="../../assets/scripts/global.js"></script>
 </body>
 </html>
