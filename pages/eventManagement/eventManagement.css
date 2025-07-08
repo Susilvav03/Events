@@ -1,11 +1,9 @@
-/* General layout for the event management page */
 .event-management-layout {
-    min-height: calc(100vh - 52px); /* Adjusted to account for navbar height, no footer */
-    margin-top: 52px; /* To account for fixed navbar height */
-    display: flex; /* Ensure flexbox behavior for columns */
+    min-height: calc(100vh - 52px); 
+    margin-top: 52px; 
+    display: flex;
 }
 
-/* Sidebar styling - consistent with desktop.css and suscription.css */
 .event-management-layout .menu {
     background-color: var(--dark-secondary-background);
     border-right: 1px solid var(--dark-border-color);
@@ -50,7 +48,6 @@ body.light-theme .event-management-layout .menu-list a.is-active {
     color: var(--light-background);
 }
 
-/* Main content area styling - consistent with desktop.css and suscription.css */
 .main-content {
     background-color: var(--dark-background);
     padding: 2rem;
@@ -61,10 +58,9 @@ body.light-theme .main-content {
     background-color: var(--light-background);
 }
 
-/* Specific styling for elements within the main content, like tables */
 .main-content .table {
-    background-color: var(--dark-secondary-background); /* Table background */
-    color: var(--dark-text-color); /* Table text color */
+    background-color: var(--dark-secondary-background); 
+    color: var(--dark-text-color);
 }
 
 body.light-theme .main-content .table {
@@ -73,7 +69,7 @@ body.light-theme .main-content .table {
 }
 
 .main-content .table th {
-    color: var(--palette-green-vibrant); /* Table header color */
+    color: var(--palette-green-vibrant);
     border-bottom-color: var(--dark-border-color);
 }
 
@@ -91,15 +87,14 @@ body.light-theme .main-content .table td {
 }
 
 .main-content .table.is-striped tbody tr:nth-child(even) {
-    background-color: var(--dark-background); /* Alternating row background */
+    background-color: var(--dark-background); 
 }
 
 body.light-theme .main-content .table.is-striped tbody tr:nth-child(even) {
     background-color: var(--light-background);
 }
 
-/* Responsive adjustments - consistent with desktop.css and suscription.css */
-@media screen and (max-width: 1023px) { /* For tablet and mobile */
+@media screen and (max-width: 1023px) { 
     .event-management-layout {
         flex-direction: column;
         margin-top: 52px;
