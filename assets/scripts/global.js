@@ -36,9 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Contact Messages Page
+// Constants
+const APP_URL = "http://localhost:3000";
 
-
+// Subscribed emails elements
+// --------------------------
 const subscribedButton = document.getElementById('subscriptButton')
 const subscribedEmailInput = document.getElementById('subscribedEmail')
 if (subscribedButton && subscribedEmailInput) {
@@ -53,8 +55,6 @@ if (subscribedButton && subscribedEmailInput) {
     })
 }
 
-// Constants
-const APP_URL = "http://localhost:3000";
 
 // Contact elements
 // ----------------
@@ -85,29 +85,35 @@ const contactMessagesCount = document.getElementById('contact-messages-count');
 
 // Load contact messages on page load
 document.addEventListener('DOMContentLoaded', () => {
-    showContactMessages();
+    //showContactMessages();
 });
 
 // Search by email button click event
-searchEmailButton.addEventListener('click', async (event) => {
+if(searchEmailButton) {
+    searchEmailButton.addEventListener('click', async (event) => {
     event.preventDefault();
     await searchContactByEmail();
 });
+}
 
 // Store contact message button click event
+if (sendMessageButton) {
 sendMessageButton.addEventListener('click', async (event) => {
     event.preventDefault();
     await storeContactMessage(contactName.value, contactEmail.value, contactMessage.value);
 });
+}
 
 // Subscribed emails
 // -----------------    
 
 // Save subscribed email button click event
+if (subscribedButton) {
 subscribedButton.addEventListener('click', async (event) => {
     event.preventDefault();
     await saveSubscribedEmails(subscribedEmailInput.value);
 })
+}
 
 
 // Desktop
@@ -115,6 +121,8 @@ subscribedButton.addEventListener('click', async (event) => {
 
 // Show contact messages count on page load
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("fgfgg");
+    
     showContactMessagesCount();
 });
 
@@ -122,51 +130,55 @@ document.addEventListener('DOMContentLoaded', () => {
     showEmailsSubscribed();
 });
 
+    document.addEventListener('DOMContentLoaded', () => {
+        showEmailsSubscribed();
+    });
 
-// Functions 
 
-// Contact Messages
-// -----------------
+    // Functions 
 
-// Save new contact message
-async function storeContactMessage(name, email, content) {
-    // Validate inputs
-    if (!name || !email || !content) {
-        console.error("All fields are required.");
-        return;
+    // Contact Messages
+    // -----------------
+
+    // Save new contact message
+    async function storeContactMessage(name, email, content) {
+        // Validate inputs
+        if (!name || !email || !content) {
+            console.error("All fields are required.");
+            return;
+        }
+        // Add contact message to the backend
+        try {
+            const res = await fetch(APP_URL + "/contact-messages", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    date: new Date().toISOString().split('T')[0],
+                    content: content,
+                    email: email
+                })
+            });
+
+        } catch (error) {
+            // Handle errors
+            console.error(`Error storing contact message: ${error}`);
+        }
     }
-    // Add contact message to the backend
-    try {
-        const res = await fetch(APP_URL + "/contact-messages", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                date: new Date().toISOString().split('T')[0],
-                content: content,
-                email: email
-            })
-        });
 
-    } catch (error) {
-        // Handle errors
-        console.error(`Error storing contact message: ${error}`);
-    }
-}
+    // Show contact messages
+    async function showContactMessages() {
+        try {
+            const res = await fetch(APP_URL + "/contact-messages");
+            const messages = await res.json();
+            Messages.innerHTML = ''; // Clear previous messages
 
-// Show contact messages
-async function showContactMessages() {
-    try {
-        const res = await fetch(APP_URL + "/contact-messages");
-        const messages = await res.json();
-        Messages.innerHTML = ''; // Clear previous messages
-
-        messages.forEach(message => {
-            const messageElement = document.createElement('article');
-            messageElement.className = 'card p-5 mx-5';
-            messageElement.innerHTML = `
+            messages.forEach(message => {
+                const messageElement = document.createElement('article');
+                messageElement.className = 'card p-5 mx-5';
+                messageElement.innerHTML = `
                
                 <header class="card-header">
                     <p class="card-header-title">${message.name}</p>
@@ -182,32 +194,32 @@ async function showContactMessages() {
                 </footer>
                     
             `;
-            Messages.appendChild(messageElement);
-        });
+                Messages.appendChild(messageElement);
+            });
 
-    } catch (error) {
-        console.error(`Error fetching contact messages: ${error}`);
-    }
-}
-
-// Search contact messages by email
-async function searchContactByEmail() {
-    const email = prompt("Enter the email to search:").trim().toLowerCase();
-
-    if (!email) {
-        console.error("Please enter an email to search.");
-        return;
+        } catch (error) {
+            console.error(`Error fetching contact messages: ${error}`);
+        }
     }
 
-    try {
-        const res = await fetch(`${APP_URL}/contact-messages?email=${encodeURIComponent(email)}`);
-        const data = await res.json();
+    // Search contact messages by email
+    async function searchContactByEmail() {
+        const email = prompt("Enter the email to search:").trim().toLowerCase();
 
-        Messages.innerHTML = ''; // Clear previous messages
-        data.forEach(message => {
-            const messageElement = document.createElement('article');
-            messageElement.className = 'card p-5 mx-5';
-            messageElement.innerHTML = `
+        if (!email) {
+            console.error("Please enter an email to search.");
+            return;
+        }
+
+        try {
+            const res = await fetch(`${APP_URL}/contact-messages?email=${encodeURIComponent(email)}`);
+            const data = await res.json();
+
+            Messages.innerHTML = ''; // Clear previous messages
+            data.forEach(message => {
+                const messageElement = document.createElement('article');
+                messageElement.className = 'card p-5 mx-5';
+                messageElement.innerHTML = `
                
                 <header class="card-header">
                     <p class="card-header-title">${message.name}</p>
@@ -223,40 +235,40 @@ async function searchContactByEmail() {
                 </footer>
                     
             `;
-            Messages.appendChild(messageElement);
-        });
+                Messages.appendChild(messageElement);
+            });
 
-    } catch (error) {
-        console.error(`Error fetching contact messages by email: ${error}`);
-    }
-}
-
-// Subscribed Emails
-// -----------------
-
-// Save subscribed emails
-async function saveSubscribedEmails(email) {
-    if (!email) {
-        console.error("Email is required");
-        return;
+        } catch (error) {
+            console.error(`Error fetching contact messages by email: ${error}`);
+        }
     }
 
-    try {
-        const res = await fetch(APP_URL + "/suscription", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: email,
-                date: new Date().toISOString().split('T')[0],
-            })
-        });
-    } catch (error) {
-        // Handle errors
-        console.error(`Error storing contact message: ${error}`);
+    // Subscribed Emails
+    // -----------------
+
+    // Save subscribed emails
+    async function saveSubscribedEmails(email) {
+        if (!email) {
+            console.error("Email is required");
+            return;
+        }
+
+        try {
+            const res = await fetch(APP_URL + "/suscription", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    date: new Date().toISOString().split('T')[0],
+                })
+            });
+        } catch (error) {
+            // Handle errors
+            console.error(`Error storing contact message: ${error}`);
+        }
     }
-}
 
 async function showEmailsSubscribed() {
     const res = await fetch(APP_URL + "/suscription");
@@ -275,28 +287,30 @@ async function showEmailsSubscribed() {
         showEmails.appendChild(emailElement)
     })
 
-}
+    }
 
 
-// Desktop page
-// ---------------
+    // Desktop page
+    // ---------------
 
 // show number of contact messages
 async function showContactMessagesCount() {
     try {
         const res = await fetch(APP_URL + "/contact-messages");
         const messages = await res.json();
+
+        console.log(`Total contact messages: ${messages.length}`);
+        
         contactMessagesCount.innerHTML = "";
-        contactMessagesCount.innerHTML = messages.length();
+        contactMessagesCount.innerHTML = messages.length;
     } catch (error) {
         console.error(`Error fetching contact messages count: ${error}`);
     }
 }
 
-// Show registered emails
-// Show active events
-// Show inactive events
-// show cancelled events
-// Show total events
-
+    // Show registered emails
+    // Show active events
+    // Show inactive events
+    // show cancelled events
+    // Show total events
 
