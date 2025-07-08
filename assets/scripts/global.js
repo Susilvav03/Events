@@ -25,15 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.add('dark-theme');
     }
 
-    themeToggleBtn.addEventListener('click', () => {
-        if (body.classList.contains('dark-theme')) {
-            body.classList.replace('dark-theme', 'light-theme');
-            localStorage.setItem('theme', 'light-theme');
-        } else {
-            body.classList.replace('light-theme', 'dark-theme');
-            localStorage.setItem('theme', 'dark-theme');
-        }
-    });
+    if (themeToggleBtn) { // Added check to ensure the button exists
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('dark-theme')) {
+                body.classList.replace('dark-theme', 'light-theme');
+                localStorage.setItem('theme', 'light-theme');
+            } else {
+                body.classList.replace('light-theme', 'dark-theme');
+                localStorage.setItem('theme', 'dark-theme');
+            }
+        });
+    }
+    // ... rest of your DOMContentLoaded code
 });
 
 // Constants
