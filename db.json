@@ -12,11 +12,8 @@
   "suscription": [
     {
       "email": "tomas@gmail.com",
+      "date": "2025-07-08",
       "id": 1
-    },
-    {
-      "email": "loaiza@gmail.com",
-      "id": 2
     }
   ],
   "events": [
