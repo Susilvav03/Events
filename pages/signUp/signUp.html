@@ -3,12 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opinno | Sign Up</title>
+    <title>Opinno | Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../global.css">
     <link rel="stylesheet" href="./signUp.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet"/>
 </head>
 <body>
-    
+    <header>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <span class="logo has-text-weight-bold is-size-4">Opin<span class="green_n">n</span>o</span></span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="../../index.html">Home</a>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <button id="theme-toggle" class="button">Theme</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="register-container">
+        <h1 class="title has-text-centered mb-5">Create Account</h1>
+        <form action="#" method="POST">
+            <div class="field">
+                <label for="name">Full Name</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="text" id="name" placeholder="Your full name" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="email">Email Address</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="email" id="email" placeholder="raul@riwi.io" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="password" id="password" placeholder="Create your password" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="confirm_password">Confirm Password</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="password" id="confirm_password" placeholder="Confirm your password" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-primary is-fullwidth">Register</button>
+                </div>
+            </div>
+
+            <div class="has-text-centered mt-4">
+                <p>Already have an account? <a class="login-button" href="../signIn/signIn.html">Log In</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="./signUp.js"></script>
+    <script src="../../assets/scripts/global.js"></script>
 </body>
 </html>

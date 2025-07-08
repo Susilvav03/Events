@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 $target.classList.toggle('is-active');
             });
         });
-    }   
+    }
 
     // Theme toggle functionality
     const themeToggleBtn = document.getElementById('theme-toggle');
@@ -42,10 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
 const APP_URL = "http://localhost:3000";
 const contactName = document.getElementById('contact-name');
 const contactEmail = document.getElementById('contact-email');
-const contactMessage = document.getElementById('contact-message');  
+const contactMessage = document.getElementById('contact-message');
 const sendMessageButton = document.getElementById('send-message');
 const Messages = document.getElementById('contact-messages');
 const searchEmailButton = document.getElementById('search-email');
+
+
+const subscribedButton = document.getElementById('subscriptButton')
+const subscribedEmailInput = document.getElementById('subscribedEmail')
 
 // Events
 
@@ -65,6 +69,11 @@ sendMessageButton.addEventListener('click', async (event) => {
     event.preventDefault();
     await storeContactMessage(contactName.value, contactEmail.value, contactMessage.value);
 });
+
+subscribedButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+    await saveSubscribedEmails(subscribedEmailInput.value)
+})
 
 // Functions 
 
@@ -103,8 +112,8 @@ async function showContactMessages() {
         const res = await fetch(APP_URL + "/contact-messages");
         const messages = await res.json();
         Messages.innerHTML = ''; // Clear previous messages
-        
-        messages.forEach(message => {   
+
+        messages.forEach(message => {
             const messageElement = document.createElement('article');
             messageElement.className = 'card p-5 mx-5';
             messageElement.innerHTML = `
@@ -145,7 +154,7 @@ async function searchContactByEmail() {
         const data = await res.json();
 
         Messages.innerHTML = ''; // Clear previous messages
-        data.forEach(message => {   
+        data.forEach(message => {
             const messageElement = document.createElement('article');
             messageElement.className = 'card p-5 mx-5';
             messageElement.innerHTML = `
@@ -171,6 +180,31 @@ async function searchContactByEmail() {
         console.error(`Error fetching contact messages by email: ${error}`);
     }
 }
+
+//Save registered emails
+async function saveSubscribedEmails(email) {
+    if (!email) {
+        console.error("Email is required");
+        return        
+    }
+
+    try {
+        const res = await fetch(APP_URL + "/suscription", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                'email': email
+            })
+        });
+    } catch (error) {
+        // Handle errors
+        console.error(`Error storing contact message: ${error}`);
+    }
+}
+
+
 
 
 // Desktop page
