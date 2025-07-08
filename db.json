@@ -9,7 +9,16 @@
       "id": 1
     }
   ],
-  "suscription": [],
+  "suscription": [
+    {
+      "email": "tomas@gmail.com",
+      "id": 1
+    },
+    {
+      "email": "loaiza@gmail.com",
+      "id": 2
+    }
+  ],
   "events": [
     {
       "id": 1,

@@ -36,6 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Contact Messages Page
+
+
+const subscribedButton = document.getElementById('subscriptButton')
+const subscribedEmailInput = document.getElementById('subscribedEmail')
+if (subscribedButton && subscribedEmailInput) {
+    subscribedButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const email = subscribedEmailInput.value.trim();
+        if (!email) {
+            alert("Please enter a valid email");
+            return;
+        }
+        await saveSubscribedEmails(email);
+    })
+}
 
 // Constants
 const APP_URL = "http://localhost:3000";
