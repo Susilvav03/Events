@@ -1,80 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opinno | Contact</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="./contact.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet" />
 </head>
-<body class="fixed-grid has-6-cols">
-    <div class="grid">
-        <header>
-            <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                    <a class="navbar-item" href="#">
-                        <span class="logo has-text-weight-bold is-size-4">Opinno</span>
-                    </a>
-                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-                        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
-                    </a>
+
+<body class="dark-theme">
+    <header>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <span class="logo has-text-weight-bold is-size-4">Opin<span class="green_n">n</span>o</span></span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-start">
                 </div>
-                <div id="navbarMenu" class="navbar-menu">
-                    <div class="navbar-start">
-                        <p class="navbar-item">Welcome Admin</p>
-                    </div>
-                    <div class="navbar-end">
-                        <div class="navbar-item">
-                            <div class="buttons">
-                                <a class="button is-primary is-outlined" href="./pages/signIn/signIn.html">Log Out</a>
-                                <button id="theme-toggle" class="button">Theme</button>
-                            </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary is-outlined" href="../../pages/signIn/signIn.html">Log Out</a>
+                            <button id="theme-toggle" class="button">Theme</button>
                         </div>
                     </div>
                 </div>
-            </nav>
-        </header>
-        <aside class="menu cell is-col-start-1">
+            </div>
+        </nav>
+    </header>
+
+    <div class="columns is-gapless is-desktop contact-layout">
+        <aside class="column is-one-fifth menu section py-6">
             <ul class="menu-list">
                 <li><a href="../desktop/desktop.html" class="p-4">Desktop</a></li>
-                <li><a href="../suscription/suscription.html" class="p-4">Subscriptions</a></li>
+                <li><a href="../suscription/suscription.html" class="p-4">Suscriptions</a></li>
                 <li><a href="../eventManagement/eventManagement.html" class="p-4">Events Management</a></li>
-                <li><a href="../contact/contact.html" class="is-active p-4">Contact</a></li>
+                <li><a href="./contact.html" class="is-active p-4">Contact</a></li>
             </ul>
         </aside>
-        <main class="cell is-col-start-2 is-col-span-5 p-6">
-            <section class="fixed-grid has-4-cols">
-                <div class="grid">
-                    <h2 class="cell is-col-start-1 is-col-span-3">Contact Information</h2>
-                    <button id="search-email" class="button is-primary is-outlined cell is-col-start-4 p-4">Search by email</button>
 
-                    <section id="contact-messages" class="cell is-col-start-1 is-col-span-4">
-                        <!-- Here it goes the innerHTML -->
-                        <article class="card p-5 mx-5">
-                            <header class="card-header">
-                                <p class="card-header-title">Name</p>
-                                <time datetime="2016-1-1" class="has-text-left-tablet has-text-left-mobile px-5">11:09 PM - 1 Jan 2016</time>
-                            </header>
-                            <div class="card-content">
-                                <div class="content">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                </div>
+        <main class="column section is-four-fifths main-content">
+            <div class="container">
+                <h1 class="title is-2 mb-5">Contact Messages</h1>
+
+                <section class="section py-4">
+                    <div class="columns is-vcentered mb-4">
+                        <div class="column is-half">
+                            <h2 class="title is-4 mb-0">Contact Information</h2>
+                        </div>
+                        <div class="column is-half has-text-right">
+                            <button id="search-email" class="button is-primary">Search by email</button>
+                        </div>
+                    </div>
+
+                    <div class="box contact-messages-container">
+                        <p class="mb-4">This is where the list of contact messages will be displayed.</p>
+
+                        <div class="columns is-multiline">
+                            <div class="column is-full">
+                                <article class="card p-5">
+                                    <header class="card-header">
+                                        <p class="card-header-title">John Doe</p>
+                                        <time datetime="2024-06-25"
+                                            class="has-text-left-tablet has-text-left-mobile px-5">10:30 AM - June 25,
+                                            2024</time>
+                                    </header>
+                                    <div class="card-content">
+                                        <div class="content">
+                                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
+                                            iaculis mauris."
+                                        </div>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <a href="mailto:john.doe@example.com"
+                                            class="card-footer-item">john.doe@example.com</a>
+                                    </footer>
+                                </article>
                             </div>
-                            <footer class="card-footer">
-                                <a href="mailto:example@example.com" class="card-footer-item">Email</a>
-                            </footer>
-                        </article>
-                    </section>
-                    
-                </div>
-            </section>
+                            <div class="column is-full">
+                                <article class="card p-5">
+                                    <header class="card-header">
+                                        <p class="card-header-title">Jane Smith</p>
+                                        <time datetime="2024-06-20"
+                                            class="has-text-left-tablet has-text-left-mobile px-5">02:15 PM - June 20,
+                                            2024</time>
+                                    </header>
+                                    <div class="card-content">
+                                        <div class="content">
+                                            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                                            doloremque laudantium."
+                                        </div>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <a href="mailto:jane.smith@example.com"
+                                            class="card-footer-item">jane.smith@example.com</a>
+                                    </footer>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </main>
-        <footer>
-            
-        </footer>
     </div>
+
     <script src="../../assets/scripts/global.js"></script>
 </body>
+
 </html>
