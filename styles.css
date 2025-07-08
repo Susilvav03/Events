@@ -327,3 +327,12 @@ body.light-theme #theme-toggle:hover {
 .green_n {
     color: var(--palette-green-vibrant)
 }
+
+body.light-theme .box {
+    background-color: #000000a6;
+    border-bottom: 1px solid #ffffff;
+}
+
+.navbar-burger {
+    color: var(--palette-green-vibrant)
+}

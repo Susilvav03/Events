@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opinno | Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"> 
-    <link rel="stylesheet" href="./signIn.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="./signIn.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body class="dark-theme"> 
     <header>
         <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
@@ -34,40 +35,42 @@
         </nav>
     </header>
     <div class="login-container">
-        <h1 class="title has-text-centered mb-5">Login</h1>
-        <form action="#" method="POST">
-            <div class="field">
-                <label class="label" for="username">Username</label>
-                <div class="control has-icons-left">
-                    <input class="input" type="text" id="username" placeholder="Your username" required>
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-user"></i>
-                    </span>
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label" for="password">Password</label>
-                <div class="control has-icons-left">
-                    <input class="input" type="password" id="password" placeholder="Your password" required>
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </div>
-            </div>
-
-            <div class="field mt-5">
-                <div class="control">
-                    <button type="submit" class="button is-primary is-fullwidth">Log In</button>
-                </div>
-            </div>
-
-            <div class="field mt-3">
-                <div class="control">
-                    <a href="../signUp/signUp.html"><button type="button" class="button is-link is-light is-fullwidth" >Register</button></a>
+        <div class="box"> <h1 class="title has-text-centered mb-5">Login</h1> <form action="#" method="POST">
+                <div class="field">
+                    <label for="email">Email</label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="email" id="username" placeholder="raul@riwi.io" required>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
                     </div>
-            </div>
-        </form>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <div class="control has-icons-left">
+                        <input class="input" type="password" id="password" placeholder="********" required>
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="field mt-5">
+                    <div class="control">
+                        <button type="submit" class="button is-fullwidth">Log In</button>
+                    </div>
+                </div>
+
+                <div class="field mt-3">
+                    <div class="control">
+                        <a href="../signUp/signUp.html"><button type="button" class="button is-gray is-fullwidth">Register</button></a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+    <script src="./signIn.js"></script>
+    <script src="../../assets/scripts/global.js"></script>
 </body>
 </html>
