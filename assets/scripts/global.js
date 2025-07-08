@@ -206,13 +206,33 @@ async function saveSubscribedEmails(email) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                'email': email
+                email: email,
+                date: new Date().toISOString().split('T')[0],
             })
         });
     } catch (error) {
         // Handle errors
         console.error(`Error storing contact message: ${error}`);
     }
+}
+
+async function showEmailsSubscribed() {
+    const res = await fetch(APP_URL + "/suscription");
+    const emails = await res.json();
+    Messages.innerHTML = '';
+
+    emails.forEach(email => {
+        const emailElement = document.createElement('tr');
+        emailElement.className = 'emails-subscribed';
+        emailElement.innerHTML = `
+                <td>${email.id}</td>
+                <td><a href="mailto:${email.email}">${email.email}</a></td>
+                <td>Active</td>
+                <td></td>
+        `;
+        Messages.appendChild(emailElement)
+    })
+
 }
 
 
