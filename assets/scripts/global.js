@@ -99,12 +99,6 @@ if (sendMessageButton) {
 // -----------------    
 
 // Save subscribed email button click event
-if (subscribedButton) {
-    subscribedButton.addEventListener('click', async (event) => {
-        event.preventDefault();
-        await saveSubscribedEmails(subscribedEmailInput.value);
-    })
-}
 
 if (subscribedButton && subscribedEmailInput) {
     subscribedButton.addEventListener('click', async (event) => {
