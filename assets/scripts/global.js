@@ -76,23 +76,23 @@ const contactMessagesCount = document.getElementById('contact-messages-count');
 
 // Load contact messages on page load
 document.addEventListener('DOMContentLoaded', () => {
-    //showContactMessages();
+    showContactMessages();
 });
 
 // Search by email button click event
-if(searchEmailButton) {
+if (searchEmailButton) {
     searchEmailButton.addEventListener('click', async (event) => {
-    event.preventDefault();
-    await searchContactByEmail();
-});
+        event.preventDefault();
+        await searchContactByEmail();
+    });
 }
 
 // Store contact message button click event
 if (sendMessageButton) {
-sendMessageButton.addEventListener('click', async (event) => {
-    event.preventDefault();
-    await storeContactMessage(contactName.value, contactEmail.value, contactMessage.value);
-});
+    sendMessageButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+        await storeContactMessage(contactName.value, contactEmail.value, contactMessage.value);
+    });
 }
 
 // Subscribed emails
@@ -100,10 +100,10 @@ sendMessageButton.addEventListener('click', async (event) => {
 
 // Save subscribed email button click event
 if (subscribedButton) {
-subscribedButton.addEventListener('click', async (event) => {
-    event.preventDefault();
-    await saveSubscribedEmails(subscribedEmailInput.value);
-})
+    subscribedButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+        await saveSubscribedEmails(subscribedEmailInput.value);
+    })
 }
 
 if (subscribedButton && subscribedEmailInput) {
@@ -124,7 +124,7 @@ if (subscribedButton && subscribedEmailInput) {
 // Show contact messages count on page load
 document.addEventListener('DOMContentLoaded', () => {
     console.log("fgfgg");
-    
+
     showContactMessagesCount();
 });
 
@@ -144,143 +144,148 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    showEmailsSubscribed();
+    showEmailsCount();
 });
 
-    // Functions 
+// Functions 
 
-    // Contact Messages
-    // -----------------
+// Contact Messages
+// -----------------
 
-    // Save new contact message
-    async function storeContactMessage(name, email, content) {
-        // Validate inputs
-        if (!name || !email || !content) {
-            console.error("All fields are required.");
-            return;
-        }
-        // Add contact message to the backend
-        try {
-            const res = await fetch(APP_URL + "/contact-messages", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: name,
-                    date: new Date().toISOString().split('T')[0],
-                    content: content,
-                    email: email
-                })
-            });
+// Save new contact message
+async function storeContactMessage(name, email, content) {
+    // Validate inputs
+    if (!name || !email || !content) {
+        console.error("All fields are required.");
+        return;
+    }
+    // Add contact message to the backend
+    try {
+        const res = await fetch(APP_URL + "/contact-messages", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                date: new Date().toISOString().split('T')[0],
+                content: content,
+                email: email
+            })
+        });
 
-        } catch (error) {
-            // Handle errors
-            console.error(`Error storing contact message: ${error}`);
-        }
+    } catch (error) {
+        // Handle errors
+        console.error(`Error storing contact message: ${error}`);
+    }
+}
+
+// Show contact messages
+async function showContactMessages() {
+    try {
+        const res = await fetch(APP_URL + "/contact-messages");
+        const messages = await res.json();
+        Messages.innerHTML = ''; // Clear previous messages
+
+        messages.forEach(message => {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'column is-full';
+            messageElement.innerHTML = `
+                <article class="card p-5">
+                    <header class="card-header">
+                        <p class="card-header-title">${message.name}</p>
+                        <time datetime="${message.date}"
+                            class="has-text-left-tablet has-text-left-mobile px-5">${message.date}</time>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            "${message.content}"
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="mailto:${message.email}"
+                            class="card-footer-item">${message.email}</a>
+                    </footer>
+                </article>        
+            `;
+            Messages.appendChild(messageElement);
+        });
+
+    } catch (error) {
+        console.error(`Error fetching contact messages: ${error}`);
+    }
+}
+
+// Search contact messages by email
+async function searchContactByEmail() {
+    const email = prompt("Enter the email to search:").trim().toLowerCase();
+
+    if (!email) {
+        console.error("Please enter an email to search.");
+        return;
     }
 
-    // Show contact messages
-    async function showContactMessages() {
-        try {
-            const res = await fetch(APP_URL + "/contact-messages");
-            const messages = await res.json();
-            Messages.innerHTML = ''; // Clear previous messages
+    try {
+        const res = await fetch(`${APP_URL}/contact-messages?email=${encodeURIComponent(email)}`);
+        const data = await res.json();
 
-            messages.forEach(message => {
-                const messageElement = document.createElement('article');
-                messageElement.className = 'card p-5 mx-5';
-                messageElement.innerHTML = `
-               
-                <header class="card-header">
-                    <p class="card-header-title">${message.name}</p>
-                    <time datetime="${message.date}" class="has-text-left-tablet has-text-left-mobile px-5">${message.date}</time>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        ${message.content}
+        Messages.innerHTML = ''; // Clear previous messages
+        data.forEach(message => {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'column is-full';
+            messageElement.innerHTML = `
+                <article class="card p-5">
+                    <header class="card-header">
+                        <p class="card-header-title">${message.name}</p>
+                        <time datetime="${message.date}"
+                            class="has-text-left-tablet has-text-left-mobile px-5">${message.date}</time>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            "${message.content}"
+                        </div>
                     </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="mailto:${message.email}" class="card-footer-item">${message.email}</a>
-                </footer>
+                    <footer class="card-footer">
+                        <a href="mailto:${message.email}"
+                            class="card-footer-item">${message.email}</a>
+                    </footer>
+                </article> 
                     
             `;
-                Messages.appendChild(messageElement);
-            });
+            Messages.appendChild(messageElement);
+        });
 
-        } catch (error) {
-            console.error(`Error fetching contact messages: ${error}`);
-        }
+    } catch (error) {
+        console.error(`Error fetching contact messages by email: ${error}`);
+    }
+}
+
+// Subscribed Emails
+// -----------------
+
+// Save subscribed emails
+async function saveSubscribedEmails(email) {
+    if (!email) {
+        console.error("Email is required");
+        return;
     }
 
-    // Search contact messages by email
-    async function searchContactByEmail() {
-        const email = prompt("Enter the email to search:").trim().toLowerCase();
-
-        if (!email) {
-            console.error("Please enter an email to search.");
-            return;
-        }
-
-        try {
-            const res = await fetch(`${APP_URL}/contact-messages?email=${encodeURIComponent(email)}`);
-            const data = await res.json();
-
-            Messages.innerHTML = ''; // Clear previous messages
-            data.forEach(message => {
-                const messageElement = document.createElement('article');
-                messageElement.className = 'card p-5 mx-5';
-                messageElement.innerHTML = `
-               
-                <header class="card-header">
-                    <p class="card-header-title">${message.name}</p>
-                    <time datetime="${message.date}" class="has-text-left-tablet has-text-left-mobile px-5">${message.date}</time>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        ${message.content}
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="mailto:${message.email}" class="card-footer-item">${message.email}</a>
-                </footer>
-                    
-            `;
-                Messages.appendChild(messageElement);
-            });
-
-        } catch (error) {
-            console.error(`Error fetching contact messages by email: ${error}`);
-        }
+    try {
+        const res = await fetch(APP_URL + "/suscription", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                date: new Date().toISOString().split('T')[0],
+            })
+        });
+    } catch (error) {
+        // Handle errors
+        console.error(`Error storing contact message: ${error}`);
     }
-
-    // Subscribed Emails
-    // -----------------
-
-    // Save subscribed emails
-    async function saveSubscribedEmails(email) {
-        if (!email) {
-            console.error("Email is required");
-            return;
-        }
-
-        try {
-            const res = await fetch(APP_URL + "/suscription", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: email,
-                    date: new Date().toISOString().split('T')[0],
-                })
-            });
-        } catch (error) {
-            // Handle errors
-            console.error(`Error storing contact message: ${error}`);
-        }
-    }
+}
 
 async function showEmailsSubscribed() {
     const res = await fetch(APP_URL + "/suscription");
@@ -299,11 +304,11 @@ async function showEmailsSubscribed() {
         showEmails.appendChild(emailElement)
     })
 
-    }
+}
 
 
-    // Desktop page
-    // ---------------
+// Desktop page
+// ---------------
 
 // show number of contact messages
 async function showContactMessagesCount() {
@@ -312,7 +317,7 @@ async function showContactMessagesCount() {
         const messages = await res.json();
 
         console.log(`Total contact messages: ${messages.length}`);
-        
+
         contactMessagesCount.innerHTML = "";
         contactMessagesCount.innerHTML = messages.length;
     } catch (error) {
@@ -320,26 +325,40 @@ async function showContactMessagesCount() {
     }
 }
 
-    // Show registered emails
-    // Show active events
-    // Show inactive events
-    // show cancelled events
-    // Show total events
+// show number of registered emails
+async function showEmailsCount() {
+    try {
+        const res = await fetch(APP_URL + "/suscription");
+        const emails = await res.json();
 
-    async function showEventsCount() {
-        try {
-            const res = await fetch(APP_URL + "/events")
-            const events = await res.json()
-            const active = events.filter(event => event.status === "active")
-            const inactive = events.filter(event => event.status === "inactive")
-            const cancelled = events.filter(event => event.status === "cancelled")
-            activeEvents.innerHTML = active.length;
-            inactiveEvents.innerHTML = inactive.length;
-            cancelledEvents.innerHTML = cancelled.length;
-            totalEvents.innerHTML = events.length;
-        }
-        catch {
-            console.error(`Error fetching events count: ${error}`);
-        }
+        console.log(`Total registered emails: ${emails.length}`);
+
+        registeredEmails.innerHTML = "";
+        registeredEmails.innerHTML = emails.length;
+    } catch (error) {
+        console.error(`Error fetching contact messages count: ${error}`);
     }
+}
+
+// Show registered emails
+// Show active events
+// Show inactive events
+// show cancelled events
+// Show total events
+async function showEventsCount() {
+    try {
+        const res = await fetch(APP_URL + "/events")
+        const events = await res.json()
+        const active = events.filter(event => event.status === "active")
+        const inactive = events.filter(event => event.status === "inactive")
+        const cancelled = events.filter(event => event.status === "cancelled")
+        activeEvents.innerHTML = active.length;
+        inactiveEvents.innerHTML = inactive.length;
+        cancelledEvents.innerHTML = cancelled.length;
+        totalEvents.innerHTML = events.length;
+    }
+    catch {
+        console.error(`Error fetching events count: ${error}`);
+    }
+}
 
