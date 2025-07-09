@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opinno | Events Management</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../styles.css"> <link rel="stylesheet" href="./eventManagement.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="./eventManagement.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet" />
 </head>
+
 <body class="dark-theme">
     <header>
         <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -21,7 +24,7 @@
             </div>
             <div id="navbarMenu" class="navbar-menu">
                 <div class="navbar-start">
-                    </div>
+                </div>
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
@@ -34,7 +37,9 @@
         </nav>
     </header>
 
-    <div class="columns is-gapless is-desktop event-management-layout"> <aside class="column is-one-fifth menu section py-6"> <ul class="menu-list">
+    <div class="columns is-gapless is-desktop event-management-layout">
+        <aside class="column is-one-fifth menu section py-6">
+            <ul class="menu-list">
                 <li><a href="../desktop/desktop.html" class="p-4">Desktop</a></li>
                 <li><a href="../suscription/suscription.html" class="p-4">Suscriptions</a></li>
                 <li><a href="./eventManagement.html" class="is-active p-4">Events Management</a></li>
@@ -42,7 +47,8 @@
             </ul>
         </aside>
 
-        <main class="column section is-four-fifths main-content"> <div class="container">
+        <main class="column section is-four-fifths main-content">
+            <div class="container">
                 <h1 class="title is-2 mb-5">Events Management</h1>
 
                 <section class="section py-4">
@@ -51,60 +57,138 @@
                             <h2 class="title is-4 mb-0">Events List</h2>
                         </div>
                         <div class="column is-half has-text-right">
-                            <button class="button is-primary">Search by name</button>
+                            <button id="search-event" class="button is-primary m-2">Search by name</button>
+                            <button id="new-event" class="button is-primary m-2">New Event</button>
                         </div>
                     </div>
-                    
-                    <div class="box"> <p>This is where the list of events will be displayed.</p>
-                        <table class="table is-fullwidth is-striped is-hoverable">
-                            <thead>
-                                <tr>
-                                    <th>Event Name</th>
-                                    <th>Date</th>
-                                    <th>Location</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Tech Summit 2024</td>
-                                    <td>2024-07-20</td>
-                                    <td>Virtual</td>
-                                    <td>Active</td>
-                                    <td>
-                                        <button class="button is-small is-info mr-1">Edit</button>
-                                        <button class="button is-small is-danger">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Innovation Expo</td>
-                                    <td>2024-08-05</td>
-                                    <td>Convention Center</td>
-                                    <td>Active</td>
-                                    <td>
-                                        <button class="button is-small is-info mr-1">Edit</button>
-                                        <button class="button is-small is-danger">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Web Dev Workshop</td>
-                                    <td>2024-09-10</td>
-                                    <td>Online</td>
-                                    <td>Inactive</td>
-                                    <td>
-                                        <button class="button is-small is-info mr-1">Edit</button>
-                                        <button class="button is-small is-danger">Delete</button>
-                                    </td>
-                                </tr>
+                    <table class="table is-fullwidth is-striped is-hoverable">
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="events-table-body">
                             </tbody>
-                        </table>
-                    </div>
+                    </table>
                 </section>
             </div>
         </main>
     </div>
 
+    <div id="new-event-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <h3 class="title is-4">Create New Event</h3>
+                <div class="field">
+                    <label class="label">Event Name</label>
+                    <div class="control">
+                        <input class="input" type="text" id="event-name" placeholder="e.g., Tech Conference">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Date</label>
+                    <div class="control">
+                        <input class="input" type="date" id="event-date">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Location</label>
+                    <div class="control">
+                        <input class="input" type="text" id="event-location" placeholder="e.g., Virtual, Convention Center">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Price</label>
+                    <div class="control">
+                        <input class="input" type="number" id="event-price" placeholder="e.g., 100">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Status</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="event-status">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-primary" id="save-event-button">Save Event</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-link is-light" id="cancel-new-event-button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div id="edit-event-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <h3 class="title is-4">Edit Event</h3>
+                <input type="hidden" id="edit-event-id">
+                <div class="field">
+                    <label class="label">Event Name</label>
+                    <div class="control">
+                        <input class="input" type="text" id="edit-event-name" placeholder="e.g., Tech Conference">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Date</label>
+                    <div class="control">
+                        <input class="input" type="date" id="edit-event-date">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Location</label>
+                    <div class="control">
+                        <input class="input" type="text" id="edit-event-location" placeholder="e.g., Virtual, Convention Center">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Price</label>
+                    <div class="control">
+                        <input class="input" type="number" id="edit-event-price" placeholder="e.g., 100">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Status</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="edit-event-status">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-primary" id="update-event-button">Update Event</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-link is-light" id="cancel-edit-event-button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
     <script src="../../assets/scripts/global.js"></script>
 </body>
+
 </html>

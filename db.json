@@ -23,12 +23,12 @@
   ],
   "events": [
     {
-      "id": 1,
-      "name": "Event One",
-      "date": "2023-10-01",
-      "location": "Location One",
-      "price": 100,
-      "status": "cancelled"
+      "name": "Event Two",
+      "date": "2023-10-27",
+      "location": "ALLA",
+      "price": 200,
+      "status": "inactive",
+      "id": 1
     }
   ]
 }

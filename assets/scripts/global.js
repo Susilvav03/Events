@@ -69,7 +69,137 @@ const totalEvents = document.getElementById('total-events');
 const registeredEmails = document.getElementById('registered-emails');
 const contactMessagesCount = document.getElementById('contact-messages-count');
 
+
+// Events Management elements
+// --------------------------
+const eventsTableBody = document.getElementById('events-table-body'); // New: for displaying events
+
+const newEventButton = document.getElementById('new-event');
+const searchEventButton = document.getElementById('search-event'); // NEW: Search event button
+
+const newEventModal = document.getElementById('new-event-modal');
+const cancelNewEventButton = document.getElementById('cancel-new-event-button'); // Renamed ID
+const saveEventButton = document.getElementById('save-event-button');
+const eventNameInput = document.getElementById('event-name');
+const eventDateInput = document.getElementById('event-date');
+const eventLocationInput = document.getElementById('event-location');
+const eventPriceInput = document.getElementById('event-price');
+const eventStatusSelect = document.getElementById('event-status');
+
+const editEventModal = document.getElementById('edit-event-modal'); // New
+const editEventIdInput = document.getElementById('edit-event-id'); // New
+const editEventNameInput = document.getElementById('edit-event-name'); // New
+const editEventDateInput = document.getElementById('edit-event-date'); // New
+const editEventLocationInput = document.getElementById('edit-event-location'); // New
+const editEventPriceInput = document.getElementById('edit-event-price'); // New
+const editEventStatusSelect = document.getElementById('edit-event-status'); // New
+const updateEventButton = document.getElementById('update-event-button'); // New
+const cancelEditEventButton = document.getElementById('cancel-edit-event-button'); // New
+
+
 // Events
+// -------
+
+// Load events on page load
+document.addEventListener('DOMContentLoaded', () => {
+    showEvents(); // Display events in the table
+});
+
+// Open new event modal
+if (newEventButton) {
+    newEventButton.addEventListener('click', () => {
+        newEventModal.classList.add('is-active');
+    });
+}
+
+// Close new event modal
+document.querySelectorAll('.modal-background, .modal-close, #cancel-new-event-button').forEach(button => {
+    button.addEventListener('click', () => {
+        newEventModal.classList.remove('is-active');
+        clearEventForm(); // Clear the form when closing
+    });
+});
+
+// Save new event
+if (saveEventButton) {
+    saveEventButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const name = eventNameInput.value.trim();
+        const date = eventDateInput.value;
+        const location = eventLocationInput.value.trim();
+        const price = parseFloat(eventPriceInput.value);
+        const status = eventStatusSelect.value;
+
+        if (!name || !date || !location || isNaN(price)) {
+            alert("Please fill in all event fields correctly.");
+            return;
+        }
+
+        await storeEvent(name, date, location, price, status);
+        newEventModal.classList.remove('is-active');
+        clearEventForm();
+        await showEvents(); // Refresh the events list after adding
+    });
+}
+
+// Open edit event modal and populate with data
+document.addEventListener('click', async (event) => {
+    if (event.target.classList.contains('edit-event-button')) {
+        const eventId = event.target.dataset.id;
+        await populateEditEventModal(eventId);
+        editEventModal.classList.add('is-active');
+    }
+    // Handle delete button click
+    if (event.target.classList.contains('delete-event-button')) {
+        const eventId = event.target.dataset.id;
+        if (confirm('Are you sure you want to delete this event?')) {
+            await deleteEvent(eventId);
+            await showEvents(); // Refresh the events list after deleting
+        }
+    }
+});
+
+// Close edit event modal
+document.querySelectorAll('#edit-event-modal .modal-background, #edit-event-modal .modal-close, #cancel-edit-event-button').forEach(button => {
+    button.addEventListener('click', () => {
+        editEventModal.classList.remove('is-active');
+    });
+});
+
+// Update event
+if (updateEventButton) {
+    updateEventButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const eventId = editEventIdInput.value;
+        const name = editEventNameInput.value.trim();
+        const date = editEventDateInput.value;
+        const location = editEventLocationInput.value.trim();
+        const price = parseFloat(editEventPriceInput.value);
+        const status = editEventStatusSelect.value;
+
+        if (!name || !date || !location || isNaN(price)) {
+            alert("Please fill in all event fields correctly.");
+            return;
+        }
+
+        await updateEvent(eventId, name, date, location, price, status);
+        editEventModal.classList.remove('is-active');
+        await showEvents(); // Refresh the events list after updating
+    });
+}
+
+// NEW: Search event by name
+if (searchEventButton) {
+    searchEventButton.addEventListener('click', async () => {
+        const query = prompt("Enter event name to search:").trim();
+        if (query) {
+            await searchEventsByName(query);
+        } else if (query === "") {
+            await showEvents(); // If search box is empty, show all events
+        }
+    });
+}
+
 
 // Contact Messages
 // -----------------
@@ -96,7 +226,7 @@ if (sendMessageButton) {
 }
 
 // Subscribed emails
-// -----------------    
+// -----------------
 
 // Save subscribed email button click event
 
@@ -117,14 +247,12 @@ if (subscribedButton && subscribedEmailInput) {
 
 // Show contact messages count on page load
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("fgfgg");
-
     showContactMessagesCount();
 });
 
 // Show registered emails count on page load
 document.addEventListener('DOMContentLoaded', () => {
-    showRegisteredEmailsCount();
+    showEmailsCount();
 });
 
 // Show events count on page load
@@ -137,11 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showEmailsSubscribed();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    showEmailsCount();
-});
-
-// Functions 
+// Functions
 
 // Contact Messages
 // -----------------
@@ -200,7 +324,7 @@ async function showContactMessages() {
                         <a href="mailto:${message.email}"
                             class="card-footer-item">${message.email}</a>
                     </footer>
-                </article>        
+                </article>
             `;
             Messages.appendChild(messageElement);
         });
@@ -243,8 +367,8 @@ async function searchContactByEmail() {
                         <a href="mailto:${message.email}"
                             class="card-footer-item">${message.email}</a>
                     </footer>
-                </article> 
-                    
+                </article>
+
             `;
             Messages.appendChild(messageElement);
         });
@@ -310,8 +434,6 @@ async function showContactMessagesCount() {
         const res = await fetch(APP_URL + "/contact-messages");
         const messages = await res.json();
 
-        console.log(`Total contact messages: ${messages.length}`);
-
         contactMessagesCount.innerHTML = "";
         contactMessagesCount.innerHTML = messages.length;
     } catch (error) {
@@ -325,8 +447,6 @@ async function showEmailsCount() {
         const res = await fetch(APP_URL + "/suscription");
         const emails = await res.json();
 
-        console.log(`Total registered emails: ${emails.length}`);
-
         registeredEmails.innerHTML = "";
         registeredEmails.innerHTML = emails.length;
     } catch (error) {
@@ -334,7 +454,6 @@ async function showEmailsCount() {
     }
 }
 
-// Show registered emails
 // Show active events
 // Show inactive events
 // show cancelled events
@@ -350,9 +469,153 @@ async function showEventsCount() {
         inactiveEvents.innerHTML = inactive.length;
         cancelledEvents.innerHTML = cancelled.length;
         totalEvents.innerHTML = events.length;
-    }
-    catch {
+    } catch (error) {
         console.error(`Error fetching events count: ${error}`);
     }
 }
 
+
+// Event Management Functions
+// --------------------------
+
+// Function to display events in the table
+async function showEvents(eventsToDisplay = null) {
+    try {
+        const events = eventsToDisplay || await (await fetch(APP_URL + "/events")).json();
+        eventsTableBody.innerHTML = ''; // Clear existing table rows
+
+        if (events.length === 0) {
+            eventsTableBody.innerHTML = '<tr><td colspan="5" class="has-text-centered">No events found.</td></tr>';
+            return;
+        }
+
+        events.forEach(event => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${event.name}</td>
+                <td>${event.date}</td>
+                <td>${event.location}</td>
+                <td>${event.status}</td>
+                <td>
+                    <button class="button is-small is-info mr-1 edit-event-button" data-id="${event.id}">Edit</button>
+                    <button class="button is-small is-danger delete-event-button" data-id="${event.id}">Delete</button>
+                </td>
+            `;
+            eventsTableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error(`Error fetching or displaying events: ${error}`);
+    }
+}
+
+// Function to store a new event
+async function storeEvent(name, date, location, price, status) {
+    try {
+        const res = await fetch(APP_URL + "/events", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                date: date,
+                location: location,
+                price: price,
+                status: status
+            })
+        });
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const newEvent = await res.json();
+        console.log('New event added:', newEvent);
+    } catch (error) {
+        console.error(`Error storing event: ${error}`);
+    }
+}
+
+// Function to populate the edit event modal with data
+async function populateEditEventModal(eventId) {
+    try {
+        const res = await fetch(`${APP_URL}/events/${eventId}`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const eventData = await res.json();
+
+        editEventIdInput.value = eventData.id;
+        editEventNameInput.value = eventData.name;
+        editEventDateInput.value = eventData.date;
+        editEventLocationInput.value = eventData.location;
+        editEventPriceInput.value = eventData.price;
+        editEventStatusSelect.value = eventData.status;
+
+    } catch (error) {
+        console.error(`Error fetching event data for edit: ${error}`);
+    }
+}
+
+// Function to update an event
+async function updateEvent(id, name, date, location, price, status) {
+    try {
+        const res = await fetch(`${APP_URL}/events/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                date: date,
+                location: location,
+                price: price,
+                status: status
+            })
+        });
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const updatedEvent = await res.json();
+        console.log('Event updated:', updatedEvent);
+    } catch (error) {
+        console.error(`Error updating event: ${error}`);
+    }
+}
+
+// Function to delete an event
+async function deleteEvent(id) {
+    try {
+        const res = await fetch(`${APP_URL}/events/${id}`, {
+            method: "DELETE"
+        });
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        console.log('Event deleted successfully.');
+    } catch (error) {
+        console.error(`Error deleting event: ${error}`);
+    }
+}
+
+// NEW: Function to search events by name
+async function searchEventsByName(query) {
+    try {
+        const res = await fetch(`${APP_URL}/events?name_like=${encodeURIComponent(query)}`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const filteredEvents = await res.json();
+        showEvents(filteredEvents); // Display the filtered events
+    } catch (error) {
+        console.error(`Error searching events by name: ${error}`);
+        eventsTableBody.innerHTML = '<tr><td colspan="5" class="has-text-centered">Error searching events.</td></tr>';
+    }
+}
+
+// Function to clear the new event form fields
+function clearEventForm() {
+    eventNameInput.value = '';
+    eventDateInput.value = '';
+    eventLocationInput.value = '';
+    eventPriceInput.value = '';
+    eventStatusSelect.value = 'active'; // Reset to default
+}
