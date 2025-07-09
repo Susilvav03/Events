@@ -17,7 +17,7 @@ body > header {
     z-index: 1000; 
 }
 
-.register-container {
+.login-container { /* This was .register-container in your provided signIn.css, corrected to .login-container */
     max-width: 400px;
     width: 100%;
     margin-top: 80px;
@@ -28,11 +28,10 @@ body > header {
 }
 
 @media screen and (max-width: 768px) {
-    .register-container {
+    .login-container {
         padding: 10px;
     }
-    .register-container .box {
+    .login-container .box {
         padding: 1.5rem; 
     }
 }
-
